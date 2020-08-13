@@ -19,6 +19,7 @@ html {
 body {
   font-family: "Poppins", sans-serif;
   height: 100vh;
+  background-image : URL("https://cdn.pixabay.com/photo/2016/01/19/18/02/photographers-1150033_960_720.jpg");
 }
 
 a {
@@ -40,6 +41,7 @@ h2 {
 
 
 
+
 /* STRUCTURE */
 
 .wrapper {
@@ -50,6 +52,7 @@ h2 {
   width: 100%;
   min-height: 100%;
   padding: 20px;
+  background-repeat : no-repeat;
 }
 
 #formContent {
@@ -272,10 +275,15 @@ input[type=text]:placeholder {
   width:60%;
 }
 
+img{
+	width : 100%;
+	height : 100%;
+}
 </style>
 </head>
 <body>
-	
+
+
 <div class="wrapper fadeInDown">
   <div id="formContent">
     <!-- Tabs Titles -->
@@ -289,7 +297,10 @@ input[type=text]:placeholder {
     <form action='LoginServiceCon.do' method='post'>
       <input type="text" id="email" class="fadeIn second" name="email" placeholder="login">
       <input type="password" id="pw" class="fadeIn third" name="pw" placeholder="password">
-      <input type="submit" class="fadeIn fourth" value="Log In">
+      <input type="submit" class="fadeIn fourth" value="Log In" width="100px">
+    </form>
+    <form action='JoinServiceCon.do' method='post'>
+      <input type="submit" class="fadeIn fourth" value="Join" width="100px">
     </form>
 
     <!-- Remind Passowrd -->
@@ -299,5 +310,6 @@ input[type=text]:placeholder {
 
   </div>
 </div>
+
 </body>
 </html>
