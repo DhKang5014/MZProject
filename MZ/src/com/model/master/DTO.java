@@ -11,23 +11,25 @@ public class DTO {
 	String name;
 	int age;
 	int gender;
-	String sql_join = "insert into USER values(?,?,?,?,?)";
-	String sql_login = "select * from USER where EMAIL = ? and PW = ?";
-	String sql_update = "update USER set pw = ?, NAME = ?, AGE=?, GENDER=? where EMAIL=?";
+	String sql_join = "insert into USERS values(?,?,?,?,?)";
+	String sql_login = "select * from USERS where EMAIL = ? and PW = ?";
+	String sql_update = "update USERS set pw = ?, NAME = ?, AGE= ?, GENDER= ? where EMAIL= ?";
 
-	public DTO(String email, String pw,String name, int age, int gender) {
+	public DTO(String email, String pw, String name, int age, int gender) {
 		super();
 		this.email = email;
 		this.pw = pw;
 		this.name = name;
 		this.age = age;
 		this.gender = gender;
+		System.out.println(email +" " + pw + " " + name +" " + age + " " + gender + " dto 생성 full");
 	}
-	
+
 	public DTO(String email, String pw) {
 		super();
 		this.email = email;
 		this.pw = pw;
+		System.out.println(email +" " + pw + " " + name +" " + age + " " + gender + " dto 생성 small");
 	}
 
 	public String getDb_url() {
@@ -78,20 +80,28 @@ public class DTO {
 		this.pw = pw;
 	}
 
-	public String getTel() {
-		return tel;
+	public String getName() {
+		return name;
 	}
 
-	public void setTel(String tel) {
-		this.tel = tel;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getAddr() {
-		return addr;
+	public int getAge() {
+		return age;
 	}
 
-	public void setAddr(String addr) {
-		this.addr = addr;
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public int getGender() {
+		return gender;
+	}
+
+	public void setGender(int gender) {
+		this.gender = gender;
 	}
 
 	public String getSql_join() {
