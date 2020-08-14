@@ -24,6 +24,11 @@ public class joinDAO extends DAO {
 		return cnt;
 	}
 	
+	public int dupCheck(String sql, String email) {
+		psmt(sql);
+		
+	}
+	
 	
 	
 	

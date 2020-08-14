@@ -57,6 +57,7 @@ public class FrontController extends HttpServlet {
 
 		}
 		moveURL = command.execute(request,response);
+		
 		response.sendRedirect(moveURL);
 	}
 

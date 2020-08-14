@@ -11,7 +11,7 @@ public class DTO {
 	String name;
 	int age;
 	int gender;
-	String sql_join = "insert into USERS values(?,?,?,?,?)";
+	String sql_join = "insert into USERS values ( ? , ? , ? , ? , ? )";
 	String sql_login = "select * from USERS where EMAIL = ? and PW = ?";
 	String sql_update = "update USERS set pw = ?, NAME = ?, AGE= ?, GENDER= ? where EMAIL= ?";
 

@@ -15,6 +15,7 @@ public class LoginServiceCon implements Command{
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		String html = null;
 		// GET email.pw,tel,addr
+		System.out.println("로그인 설피스");
 		String email = request.getParameter("email");
 		String pw = request.getParameter("pw");
 		System.out.println(email + " " + pw);
@@ -36,9 +37,9 @@ public class LoginServiceCon implements Command{
 			session.setAttribute("user", dto_out);
 			session.setAttribute("msg", html);
 		} else {
-			System.out.println("로그인 실패하셨습니다.");
+			return "fail";
 		}
-		return "login.jsp";
+		return "main.jsp";
 	}
 
 }
