@@ -32,6 +32,9 @@
 			.edit {position: absolute;top: 62px;left: 10px;z-index: 1;}
 			#drawingMap {width: 100%;height: 350px;height:100%;}
 			#undo.disabled, #redo.disabled {background-color:#ddd;color:#9e9e9e;}
+			.small_btn{
+				font-size :10px;
+			}
 			.btn-primary{
 				background-color: white;
 				border-radius: 50px;
@@ -60,6 +63,11 @@
 				position: absolute;
 				left : 25%;
 			}
+			.btn{
+				text-align : center;
+			}
+			
+			
 		</style>
 	
 	
@@ -74,26 +82,51 @@
 			String display_gender = null;
 			DTO dto = null;
 			String msg = null;
-		if(user == null){
-			//display_email = "로그인 한 이메일을 출력해주세요";
-			//display_name = "로그인 한 사람의 이름을 출력";
-			//display_age = "로그인 한 사람의 나이를 출력";
-			//display_gender = "로그인 한 사람의 성별을 출력해주세요.";
-			//msg = "";
-		}else{
-			dto = (DTO)user;
-			MessageFunctionDAO dao = new MessageFunctionDAO();
-			display_email = dto.getEmail();
-			String user_msg = dao.select(display_email);
-			display_name = dto.getName();
-			display_age = Integer.toString(dto.getAge());
-			display_gender = Integer.toString(dto.getGender());
-			msg = (String)user_msg;
-		}
+			if(user == null){
+				//display_email = "로그인 한 이메일을 출력해주세요";
+				//display_name = "로그인 한 사람의 이름을 출력";
+				//display_age = "로그인 한 사람의 나이를 출력";
+				//display_gender = "로그인 한 사람의 성별을 출력해주세요.";
+				//msg = "";
+			}else{
+				dto = (DTO)user;
+				MessageFunctionDAO dao = new MessageFunctionDAO();
+				display_email = dto.getEmail();
+				String user_msg = dao.select(display_email);
+				display_name = dto.getName();
+				display_age = Integer.toString(dto.getAge());
+				display_gender = Integer.toString(dto.getGender());
+				msg = (String)user_msg;
+			}
+		%>
+		
+		<!-- 아이디 중복체크 후  -->
+		<%
+			String dup_check = null;
+			Object dup_temp = null;
+			dup_temp =	session.getAttribute("dup_check");
+			if(dup_temp != null){
+				dup_check = (String) dup_temp;
+			}
+			System.out.println(dup_check + " scriptlet dup check ");
 		%>
 
-
-
+	<script>
+	//dup alert()
+	<%
+	if(dup_check != null){
+		if(dup_check.equals("dup")){%>
+			alert("다른 이메일을 사용하여 주세요.");
+			<%
+			session.setAttribute("dup_check", null);
+		}else if(dup_check.equals("ok")){%>
+			alert("이메일이 중복되지 않습니다.");
+	<%
+		session.setAttribute("dup_check", null);
+		}
+	}
+	%>
+	</script>
 
 		
 		<!-- Wrapper -->
@@ -101,11 +134,11 @@
 
 				<!-- One -->
 					<section class="banner style1 orient-left content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-right">
-						<div class="content">
+						<div class="content" style="background-image:URL()">
 							<h1>여행을 닮다</h1>
 							<p class="major">당신의 여행을 다이어리에 담아서<br/> 우리에게 가치를 공유해 주세요.<br/>
 							<%if(display_email!=null){%>
-								<%=display_email+"님 환영합니다." %>		
+								<div><p id="email"><%=display_email%></p>님 환영합니다.</div>		
 							<%}%>
 						
 							<ul class="actions stacked">
@@ -114,6 +147,8 @@
 								
 								<%if(display_email!=null){%>
 									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">회원정보수정</button>
+									<button type="button" class="btn btn-primary" onclick="publihser()">PUBLISHER 신청</button>
+									<button type="button" class="btn btn-primary" onclick="subscriber()">SUBSCRIBER 신청</button>
 									<li><a href="#first" class="button big wide smooth-scroll-middle">Get Started</a></li>
 							<%}else{%>
 								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">로그인 및 회원가입</button>
@@ -160,12 +195,17 @@
 										  <span aria-hidden="true">&times;</span>
 										</button>
 									  </div>
-									  <div class="modal-body" style='height:890px;'>
+									  <div class="modal-body" style='height:1100px;'>
 										<form action="JoinServiceCon.do">
+										
 										  <div class="form-group">
 											<label for="recipient-name" class="col-form-label">EMAIL :</label>
 											<input type="text" class="form-control" id="email" name="email">
 										  </div>
+										  
+										  <button onclick="action='./DupCheck.do'; submit();"> Email 중복체크 </button>
+
+											
 										  <div class="form-group">
 											<label for="message-text" class="col-form-label">PASSWORD :</label>
 											<input type="password" class="form-control" id="pw" name="pw">
@@ -183,8 +223,9 @@
 											<input type="password" class="form-control" id="gender" name="gender">
 										  </div>
 										  
-										  <div class="submit-form">
+										   <div class="submit-form">
 										 	 <button type="submit" class="btn btn-primary">JOIN</button>
+										 	 
 										  </div>
 										  
 										</form>
@@ -242,7 +283,8 @@
 							
 							
 						</div>
-						<div class="image">
+						<div class="image"><image src="https://cdn.pixabay.com/photo/2017/08/01/14/30/yellow-2565846_960_720.jpg"></div>
+						<!-- <div class="image">
 							<div class="map_wrap">
 								<div id="drawingMap"></div>
 								<p class="modes" style="margin-top:20px;">
@@ -259,17 +301,24 @@
 								</p>
 							</div>
 						
-						</div>
+						</div> -->
 					</section>
 
 				<!-- Two -->
 					<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in" id="first">
 						<div class="content">
-							<h2>Magna etiam feugiat</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id ante sed ex pharetra lacinia sit amet vel massa. Donec facilisis laoreet nulla eu bibendum. Donec ut ex risus. Fusce lorem lectus, pharetra pretium massa et, hendrerit vestibulum odio lorem ipsum dolor sit amet.</p>
-							<ul class="actions stacked">
-								<li><a href="#" class="button">Learn More</a></li>
-							</ul>
+							<h2>다양한 컨텐츠를 즐겨보세요.</h2>
+							<p><br/></p>
+
+							
+								<a href="#search" class="button btn-primary button big wide smooth-scroll-middle" style="position: relative;">여행검색</a>
+								<a href="#diary" class="button btn-primary button big wide smooth-scroll-middle" style="position: relative;">내 다이어리</a>
+								<a href="#write" class="button btn-primary button big wide smooth-scroll-middle" style="position: relative;">다이어리 작성</a>
+								<a href="#theme" class="button btn-primary button big wide smooth-scroll-middle" style="position: relative;">테마여행</a>
+								<a href="#diary_all" class="button btn-primary button big wide smooth-scroll-middle" style="position: relative;">다이어리 탐방</a>
+								<a href="#map_all" class="button btn-primary button big wide smooth-scroll-middle" style="position: relative;">전체지도</a>
+								
+								
 						</div>
 						<div class="image">
 							<img src="images/spotlight01.jpg" alt="" />
@@ -279,8 +328,8 @@
 				<!-- Three -->
 					<section class="spotlight style1 orient-left content-align-left image-position-center onscroll-image-fade-in">
 						<div class="content">
-							<h2>Tempus adipiscing</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id ante sed ex pharetra lacinia sit amet vel massa. Donec facilisis laoreet nulla eu bibendum. Donec ut ex risus. Fusce lorem lectus, pharetra pretium massa et, hendrerit vestibulum odio lorem ipsum dolor sit amet.</p>
+							<h2 id="search">여행 검색</h2>
+							<p></p>
 							<ul class="actions stacked">
 								<li><a href="#" class="button">Learn More</a></li>
 							</ul>
@@ -293,10 +342,10 @@
 				<!-- Four -->
 					<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in">
 						<div class="content">
-							<h2>Pharetra etiam nulla</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id ante sed ex pharetra lacinia sit amet vel massa. Donec facilisis laoreet nulla eu bibendum. Donec ut ex risus. Fusce lorem lectus, pharetra pretium massa et, hendrerit vestibulum odio lorem ipsum dolor sit amet.</p>
+							<h2 id="diary">내 다이어리</h2>
+							<p>최근 다이어리</p>
 							<ul class="actions stacked">
-								<li><a href="#" class="button">Learn More</a></li>
+								<li><a href="#" class="button">수정하기</a></li>
 							</ul>
 						</div>
 						<div class="image">
@@ -307,8 +356,12 @@
 				<!-- Five -->
 					<section class="wrapper style1 align-center">
 						<div class="inner">
-							<h2>Massa sed condimentum</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id ante sed ex pharetra lacinia sit amet vel massa. Donec facilisis laoreet nulla eu bibendum. Donec ut ex risus. Fusce lorem lectus, pharetra pretium massa et, hendrerit vestibulum odio lorem ipsum.</p>
+							<h2 id="write">다이어리 작성하기</h2>
+							<p>당신이 작성한 다이어리는 많은 이들에게 가치를 줄 수 있습니다.</p>
+							<a href="external.html" class="button">작성하기</a>
+							<a href="diary.jsp" class="button">내 다이어리 보기</a>
+							<a href="MkDir.do" class="button">이미지 서버 만들기</a>
+							<a href="imgDiary.jsp" class="button">이미지 서버 수정하기</a>
 						</div>
 
 						<!-- Gallery -->
@@ -318,14 +371,14 @@
 										<img src="images/gallery/thumbs/01.jpg" alt="" />
 									</a>
 									<div class="caption">
-										<h3>Ipsum Dolor</h3>
+										<h3>테마여행</h3>
 										<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
 										<ul class="actions fixed">
 											<li><span class="button small">Details</span></li>
 										</ul>
 									</div>
 								</article>
-								<article>
+								<article id="theme">
 									<a href="images/gallery/fulls/02.jpg" class="image">
 										<img src="images/gallery/thumbs/02.jpg" alt="" />
 									</a>
@@ -464,8 +517,8 @@
 				<!-- Six -->
 					<section class="wrapper style1 align-center">
 						<div class="inner">
-							<h2>Ipsum sed consequat</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id ante sed ex pharetra lacinia sit amet vel massa. Donec facilisis laoreet nulla eu bibendum. Donec ut ex risus. Fusce lorem lectus, pharetra pretium massa et, hendrerit vestibulum odio lorem ipsum.</p>
+							<h2>다이어리 탐방</h2>
+							<p id='diary_all'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id ante sed ex pharetra lacinia sit amet vel massa. Donec facilisis laoreet nulla eu bibendum. Donec ut ex risus. Fusce lorem lectus, pharetra pretium massa et, hendrerit vestibulum odio lorem ipsum.</p>
 							<div class="items style1 medium onscroll-fade-in">
 								<section>
 									<span class="icon style2 major fa-gem"></span>
@@ -530,8 +583,139 @@
 							</div>
 						</div>
 					</section>
-
+				
+				
 				<!-- Seven -->
+				
+				
+				
+				
+					<section>
+						
+						<div id="map" style="width:1180px;height:700px;margin-left:250px"></div>
+
+    <p>
+        <button class ="small_btn" onclick="panTo()">CGI센터로 이동</button><button class ="small_btn" onclick="createRoad()">교통정보 보기</button><button class ="small_btn" onclick="removeRoad()">교통정보 감추기</button> 
+        <button class ="small_btn" onclick="setBounds()">지도 범위 마커의 위치로 재조정 하기</button> 
+    </p>
+
+
+    
+    <p id="result"></p>
+
+
+
+
+    <script>
+        var container = document.getElementById('map'), //지도를 담을 영역의 DOM 레퍼런스
+         options = { //지도를 생성할 때 필요한 기본 옵션
+            center: new kakao.maps.LatLng(35.1107911,126.8751548), //지도의 중심좌표.
+            level: 3 //지도의 레벨(확대, 축소 정도)
+        };
+        
+        
+        var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+        // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+        var mapTypeControl = new kakao.maps.MapTypeControl();   
+
+
+        // 지도 타입 컨트롤을 지도에 표시합니다.
+        map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+        // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+        var zoomControl = new kakao.maps.ZoomControl();
+        map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+
+        function panTo() {
+            // 이동할 위도 경도 위치를 생성합니다 
+            var moveLatLon = new kakao.maps.LatLng(35.1107911,126.8751548);
+            // 지도 중심을 부드럽게 이동시킵니다
+            // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
+            map.panTo(moveLatLon);
+        }
+
+        // 지도에 교통정보를 표시하도록 지도타입을 추가합니다
+        function createRoad(){
+            map.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);    
+        }
+
+        // 아래 코드는 위에서 추가한 교통정보 지도타입을 제거합니다
+        function removeRoad(){
+            map.removeOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);     
+        }        
+        
+
+        //마커들의 좌표
+        //버튼을 클릭하면 아래 배열의 좌표들이 모두 보이게 지도 범위를 재설정합니다.
+        var points = [
+        new kakao.maps.LatLng(35.1107911,126.8751548),
+        new kakao.maps.LatLng(35.1414794,126.9298364),
+        new kakao.maps.LatLng(35.128644,126.8861603)
+        ];
+
+        // 지도를 재설정할 범위정보를 가지고 있을 LatLngBounds 객체를 생성합니다
+        var bounds = new kakao.maps.LatLngBounds();
+        var i, marker;
+        for (i = 0; i < points.length; i++) {
+            // 배열의 좌표들이 잘 보이게 마커를 지도에 추가합니다
+            marker =     new kakao.maps.Marker({ position : points[i] });
+            marker.setMap(map);
+            
+            // LatLngBounds 객체에 좌표를 추가합니다
+            bounds.extend(points[i]);
+        }
+        function setBounds() {
+            // LatLngBounds 객체에 추가된 좌표들을 기준으로 지도의 범위를 재설정합니다
+            // 이때 지도의 중심좌표와 레벨이 변경될 수 있습니다
+            map.setBounds(bounds);
+        }
+
+
+
+        // 지도에 클릭 이벤트를 등록합니다
+// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+    kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
+
+    // 클릭한 위도, 경도 정보를 가져옵니다 
+    var latlng = mouseEvent.latLng;
+    
+    var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
+    message += '경도는 ' + latlng.getLng() + ' 입니다';
+    
+    var resultDiv = document.getElementById('result'); 
+    resultDiv.innerHTML = message;
+    
+});
+    </script>
+						<!-- <div class="image">
+							<div class="map_wrap">
+								<div id="drawingMap"></div>
+								<p class="modes" style="margin-top:20px;">
+									<button onclick="selectOverlay('MARKER')">마커</button>
+									<button onclick="selectOverlay('POLYLINE')">선</button>
+									<button onclick="selectOverlay('CIRCLE')">원</button>
+									<button onclick="selectOverlay('RECTANGLE')">사각형</button>
+									<button onclick="selectOverlay('POLYGON')">다각형</button>
+								</p>
+								
+								<p class="edit" style="margin-top:50px;">
+									<button id="undo" class="disabled" onclick="undo()" disabled>UNDO</button>
+									<button id="redo" class="disabled" onclick="redo()" disabled>REDO</button>
+								</p>
+							</div>
+						
+						</div> -->
+					</section>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<!-- Eight -->
 					<section class="wrapper style1 align-center">
 						<div class="inner medium">
 							<h2>Get in touch</h2>
@@ -697,6 +881,47 @@
 					// 이전 상태로 되돌린 상태를 취소합니다
 					manager.redo();
 				}
+				
+				//배포자 신청
+				function publihser(){
+					
+						var email = document.getElementById("email").innerText;
+						
+						console.log("publisher() function >> " + email);
+						$.ajax({  
+						type: "POST" 
+						,url: "/MZ/PublisherCreateServiceCon.do"
+						,data: {email:email}
+						,success:function(data){
+							alert("성공");
+						}
+						,error:function(data){
+							alert("error");
+						}
+						});
+					
+				}
+				
+				//구독자 신청
+				function subscriber(){
+					var email = document.getElementById("email").innerText;
+					
+					console.log("sublisher() function >> " + email);
+					$.ajax({  
+					type: "POST" 
+					,url: "/MZ/SubscriberCreateServiceCon.do"
+					,data: {email:email}
+					,success:function(data){
+						alert("성공");
+					}
+					,error:function(data){
+						alert("error");
+					}
+					});
+				}
+				
+				
+				
 				</script>
 			
 

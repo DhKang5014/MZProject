@@ -53,11 +53,33 @@ public class FrontController extends HttpServlet {
 			command = new MessageOneDeleteServiceCon();
 		} else if (resultURI.equals("MessageServiceCon.do")) {
 			command = new MessageServiceCon();
-		} else {
-
+		} else if(resultURI.equals("MkDir.do")){
+			command = new MkDir();
+		} else if(resultURI.equals("ImgServer_update.do")){
+			command = new ImgServer_update();
+		} else if(resultURI.equals("DupCheck.do")) {
+			command = new DupCheck();
 		}
-		moveURL = command.execute(request,response);
+		else if(resultURI.equals("AllGetImagesServiceCon.do")) {
+			command = new AllGetImagesServiceCon();
+		}else if(resultURI.equals("UserPlaceResisterServiceCon.do")) {
+			System.out.println("UserPlaceResisterServiceCon 도입부 frontController");
+			command = new UserPlaceResisterServiceCon();
+		}else if(resultURI.equals("PublisherCreateServiceCon.do")) {
+			System.out.println("publisherCreateServiceCon 도입부 frontController");
+			command = new PublisherCreateServiceCon();
+		}else if(resultURI.equals("SubscriberCreateServiceCon.do")) {
+			System.out.println("SubscriberCreateServiceCon 도입부 frontController");
+			command = new SubscriberCreateServiceCon();
+		}else if(resultURI.equals("MkDiaryServiceCon.do")) {
+			System.out.println("MkDiaryServiceCon.do 도입부 frontController");
+			command = new MkDiaryServiceCon();
+		}
 		
+		moveURL = command.execute(request,response);
+		if(moveURL.equals("dup_img")) {
+			moveURL="imgDiary.jsp";
+		}
 		response.sendRedirect(moveURL);
 	}
 
