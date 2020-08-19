@@ -24,6 +24,8 @@ public class MkDiaryServiceCon implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
+		
+		
 		String content = request.getParameter("content");
 		String title = request.getParameter("title");
 		String file_name = request.getParameter("file_name")+".html";
@@ -84,12 +86,14 @@ public class MkDiaryServiceCon implements Command {
 		
 		//파일에 저장할 내용 - title + content
 		String res = meta;
+		
 		/** 특정 인코딩 방식 적용 **/
 		// 객체나 배열이 선언과 할당에 대한 블록이 서로분리되어 있을 경우
 		// 명시적으로 빈 영역임을 알리기 위해 null로 초기화 한다.
 		byte[] buffer = null;
 		
-		// 문자열을 "utf-8"로 인코딩해서 저장 => 영어, 숫자, : 1byte, 한글 : 3byte
+		// 문자열을 "utf-8"로 인코딩해서 저장 =>
+		// 영어, 숫자, : 1byte , 한글 : 3byte
 		try {
 			buffer = res.getBytes("UTF-8");
 		}catch(UnsupportedEncodingException e) {
@@ -105,8 +109,7 @@ public class MkDiaryServiceCon implements Command {
 			System.out.println("[INFO] 파일 저장됨 >> " + path);
 		}catch(FileNotFoundException e) {
 			System.out.println("[ERROR] 저장 경로를 찾을 수 없습니다.");
-		} catch (IOException e) {
-			
+		}catch (IOException e) {
 			e.printStackTrace();
 		}catch(Exception e) {
 			System.out.println("[ERROR] 알 수 없는 에러가 발생했습니다.");
@@ -128,6 +131,7 @@ public class MkDiaryServiceCon implements Command {
 		DTO dao = new DTO(email);
 		int cnt = po_dao.select_email_title(dto.getSql_post_select_email_file(), email, file_name);
 		if(cnt==0) po_dao.insert(dto.getSql_post_insert(), file_name, email, img_url);
+		
 		
 		
 		return "external.html";

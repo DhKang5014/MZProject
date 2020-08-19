@@ -359,7 +359,7 @@
 							<h2 id="write">다이어리 작성하기</h2>
 							<p>당신이 작성한 다이어리는 많은 이들에게 가치를 줄 수 있습니다.</p>
 							<a href="external.html" class="button">작성하기</a>
-							<a href="diary.jsp" class="button">내 다이어리 보기</a>
+							<a href="diary2.jsp" class="button">내 다이어리 보기</a>
 							<a href="MkDir.do" class="button">이미지 서버 만들기</a>
 							<a href="imgDiary.jsp" class="button">이미지 서버 수정하기</a>
 						</div>
@@ -918,6 +918,8 @@
 						alert("error");
 					}
 					});
+					
+					
 				}
 				
 				

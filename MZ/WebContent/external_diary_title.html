@@ -96,7 +96,10 @@ div#editor {
 	<div id="foo"></div>
 	<div id="editor">
 		<div id="edit1">
-			<h1>여기에 제목을 입력해 주세요.</h1>
+			<h1>여기에 대제목을 입력해 주세요.</h1>
+		</div>
+		<div id="edit">
+			<h1>여기에 소제목을 입력해 주세요.</h1>
 		</div>
 		<div id="edit2">
 			<h1>External Shared Toolbar</h1>
@@ -107,15 +110,11 @@ div#editor {
 		</div>
 	</div>
 	<div>
-		대표 이미지 URL을 입력하세요 : <input type="text" id="img_title">
-		장소 순서를 각 장소의 대표 이미지와 매칭 시켜주세요 : 
-		<div id="img_matching">
-			
-		</div>
-		<button class="button" onclick='insertTitle()'>제목 추가</button>
-		<button class="button" onclick='insertPage()'>페이지 추가</button>
+		<button class="button" onclick='insertTitle()'>대제목 추가</button>
+		<button class="button" onclick='insertSTitle()'>소제목 추가</button>
+		<button class="button" onclick='insertContent()'>내용 추가</button>
 	</div>
-	<div id="res"><div id="title"></div><div id="content"></div></div>
+	<div id="res"><div id="title"></div><div id="stitle"></div><div id="content"></div></div>
 	<button class="button" onclick='deletePage()'>페이지 삭제</button>
 	<button class="button" onclick='savePage()'>저장</button>
 	
@@ -168,47 +167,44 @@ div#editor {
 		var i = 0;
 		function insertTitle() {
 			$('#title').html($('#edit1 .fr-element').html());
-			//$('#edit1').remove('div').remove('span').remove('svg').remove('path').remove('a');
-			//document.getElementById('res').innerHTML+=document.getElementById('edit1').innerHTML+'<div id="edit3" style="margin-top: 10px;"><h3>새페이지 추가</h3></div>';
+			
+		}
+		function insertSTitle() {
+			$('#stitle').html($('#edit .fr-view').html());
+			
+		}
+		function insertContent() {
+			$('#content').html($('#edit2 .fr-element').html());
+			
 		}
 		function insertPage() {
 			i+=1;
 			var res = $('#content').html() +  "<div id='"+i+"'>"+$('#edit2 .fr-element').html()+"</div>";
-			//console.log(res);
+			
 			$('#content').html(res);
 	
 		}
 		function deletePage() {
 			$('#'+i).remove();
-			//$('#edit1').remove('div').remove('span').remove('svg').remove('path').remove('a');
 			
-			//document.getElementById('res').innerHTML+=document.getElementById('edit1').innerHTML+'<div id="edit3" style="margin-top: 10px;"><h3>새페이지 추가</h3></div>';
 		}
 		function savePage() {
-			var content = $('#content').html();
-			var title = $('#title').html();
-			var file_name = $('#title').text();
-			var meta =
-				"<html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>"+file_name+"</title></head><body>";
-					meta += title + content +"</body></html>";
-			var img_title_url = $('#img_title').val();
-			console.log("MkDiaryServiceCon() function >> request : meta :  " + meta);
-			console.log("MkDiaryServiceCon() function >> request : content :  " + content);
+			var content = $('#content').text();
+			var title = $('#title').text();
+			var stitle = $('#stitle').text();
+			
+			
+			
 			console.log("MkDiaryServiceCon() function >> request : title " + title);
-			console.log("MkDiaryServiceCon() function >> request : file_name " + file_name);
-			console.log("MkDiaryServiceCon() function >> request : img_title_url " + img_title_url);
+			console.log("MkDiaryServiceCon() function >> request : file_name " + stitle);
+			console.log("MkDiaryServiceCon() function >> request : content :  " + content);
 			console.log();
 			console.log();
 			$.ajax({  
 			type: "POST" 
-			,url: "/MZ/MkDiaryServiceCon.do"
-			,data: {content:content,title:title,file_name:file_name,meta:meta,img_title_url:img_title_url}
-			,success:function(data){
-				alert("성공");
-			}
-			,error:function(data){
-				alert("error");
-			}
+			,url: "DiaryContentsSave.do"
+			,data: {content:content,title:title,stitle:stitle}
+			
 			});
 		}
 	</script>

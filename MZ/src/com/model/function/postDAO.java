@@ -65,6 +65,7 @@ public class postDAO extends DAO{
 	public String select_email(String sql, String email){
 		ArrayList<String> ar_String = new ArrayList<String>();
 		ArrayList<String> ar_img_url = new ArrayList<String>();
+		ArrayList<String> ar_title = new ArrayList<String>();
 		String dto_out = null;
 		try {
 			psmt(sql);
@@ -79,6 +80,7 @@ public class postDAO extends DAO{
 				img_url = rs.getString(4);
 				ar_String.add(html_path+"/"+email+"/"+title);
 				ar_img_url.add(img_url);
+				ar_title.add(title);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -87,17 +89,19 @@ public class postDAO extends DAO{
 			close();
 		}
 		
-		String result = generate_email_html_tag(ar_String, ar_img_url);
+		String result = generate_email_html_tag(ar_String, ar_img_url,ar_title);
 		
 		return result;
 	}
 	
-	public String generate_email_html_tag(ArrayList<String> ar_dto, ArrayList<String> ar_img_url) {
+	public String generate_email_html_tag(ArrayList<String> ar_dto, ArrayList<String> ar_img_url, ArrayList<String> ar_title) {
 		String str = "";
 		if (ar_dto.size() > 0) {
 			for (int i = 0; i < ar_dto.size(); i++) {
-				str += "<div id='"+i+"'><a href='" + ar_dto.get(i)+"'>"+i+" 번째 다이어리</a>";
-				str += "<img src='"+ar_img_url.get(i)+"'></div>";
+				str += "<div id='"+i+"'>" + "<img src='"+ar_img_url.get(i)+"'><br/>";
+				str += "<a href='" + ar_dto.get(i)+"'>"+(i+1)+" 번째 다이어리</a><br/>";
+				str += "<h3>"+ar_title.get(i)+"<h3/>";
+				
 				
 			}
 			return str;

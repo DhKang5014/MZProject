@@ -74,6 +74,9 @@ public class FrontController extends HttpServlet {
 		}else if(resultURI.equals("MkDiaryServiceCon.do")) {
 			System.out.println("MkDiaryServiceCon.do 도입부 frontController");
 			command = new MkDiaryServiceCon();
+		}else if(resultURI.equals("DiaryContentsSave.do")) {
+			System.out.println("DiaryContentsSave.do 도입부 frontController");
+			command = new DiaryContentsSave();
 		}
 		
 		moveURL = command.execute(request,response);

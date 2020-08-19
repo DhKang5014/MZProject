@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href='/img/a/asdf.jpg'><img src='/img/a/asdf.jpg' />
+asdf
 </body>
 </html>

@@ -20,13 +20,13 @@ public class MessageOneDeleteServiceCon implements Command {
 		MessageFunctionDAO dao = new MessageFunctionDAO();
 		int cnt = 0;
 		cnt = dao.delete(dto.getEmail(), num);
-
+		
 		if (cnt > 0) {
 			System.out.println("개별삭제성공");
 		} else {
 			System.out.println("개별삭제실패");
 		}
-
+		
 		return "main.jsp";
 	}
 

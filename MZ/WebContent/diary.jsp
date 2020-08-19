@@ -13,6 +13,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+
+
+
 	<%
 		session = request.getSession();
 		DTO dto = (DTO) session.getAttribute("user");

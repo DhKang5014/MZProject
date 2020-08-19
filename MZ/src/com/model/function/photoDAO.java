@@ -80,6 +80,48 @@ public class photoDAO extends DAO {
 		
 		return result;
 	}
+	public class temp{
+		public String path;
+		public String name;
+		public String plu_name;
+	}
+	public ArrayList<temp> select_diary_img(String sql, String email){
+		ArrayList<photoDTO> ar_dto = new ArrayList<photoDTO>();
+		ArrayList<temp> str_ar = new ArrayList<temp>();
+		String dto_out = null;
+		String result = "";
+		try {
+			psmt(sql);
+			getPsmt().setString(1, email);
+			rs = getPsmt().executeQuery();
+			String name = "";
+			String eamil = "";
+			String img_url = "";
+			int num = 0;
+			String plu_name = "";
+			temp temp = null;
+			while (rs.next()) {
+				temp = new temp();
+				name = rs.getString(1);
+				email = rs.getString(2);
+				img_url = rs.getString(3);
+				num = rs.getInt(4);
+				plu_name = rs.getString(5);
+				temp.name = name;
+				temp.path = "upload/"+email+"/"+name;
+				temp.plu_name = plu_name;
+				str_ar.add(temp);
+				ar_dto.add(new photoDTO(name,email,img_url,num));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return str_ar;
+	}
+	
 	
 //	<article class="thumb">
 //	<a href="images/fulls/01.jpg" class="image"><img src="images/thumbs/01.jpg" alt="" /></a>
@@ -115,6 +157,8 @@ public class photoDAO extends DAO {
 		return "";
 		
 	}
+	
+	
 
 	public int insert_latlon(String sql, double lat, double lon, String plu_name, String name, String email) {
 		psmt(sql);

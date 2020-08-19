@@ -17,6 +17,7 @@ public class AllGetImagesServiceCon implements Command {
 		String email = dto.getEmail();
 		photoDAO dao = new photoDAO();
 		String result = dao.select_all(dto.getSql_photo_select_all(), email);
+		
 		session.setAttribute("photo_all", result);
 		return "imgDiary.jsp";
 	}

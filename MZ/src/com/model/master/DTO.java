@@ -20,7 +20,7 @@ public class DTO {
 	String sql_email_dup_check = "select * from users where email = ?";
 	String sql_photo_insert = "insert into photo(name,email,img_url,num) values ( ? , ? , ? , photo_se.nextval )";
 	String sql_photo_dup_check = "select name,email,img_url,num from photo where name = ? and email = ?";
-	String sql_photo_select_all = "select name,email,img_url,num from photo where email = ?";
+	String sql_photo_select_all = "select name,email,img_url,num,plu_name from photo where email = ?";
 	String sql_photo_latlon_insert = "UPDATE photo SET lat = ? , lon = ? , plu_name = ? WHERE name = ? and email = ?";
 	String sql_publisher_check = "select * from publisher where email = ?";
 	String sql_publisher_insert = "insert into publisher values( ? )";
@@ -29,7 +29,9 @@ public class DTO {
 	String sql_post_insert = "insert into post values(post_se.nextval, ? , ? , ? )";
 	String sql_post_select_email = "select * from post where email = ? ";
 	String sql_post_select_email_file = "select * from post where email = ? and po_title = ? ";
-	
+	String sql_diary_main_select = "select * from diary_main where email = ? ";
+	String sql_diary_main_insert = "insert into diary_main values ( ? , ? , ? , ? )";
+	String sql_diary_main_update = "update diary_main set title = ? , stitle = ? , content = ? where email = ?";
 
 	public DTO(String email, String pw, String name, int age, int gender) {
 		super();
@@ -54,6 +56,22 @@ public class DTO {
 		System.out.println(email + " " + pw + " " + name + " " + age + " " + gender + " dto 생성 small");
 	}
 
+
+	public String getSql_diary_main_update() {
+		return sql_diary_main_update;
+	}
+	
+
+	public String getSql_diary_main_select() {
+		return sql_diary_main_select;
+	}
+	
+
+	public String getSql_diary_main_insert() {
+		return sql_diary_main_insert;
+	}
+	
+	
 
 	public String getSql_post_select_email_file() {
 		return sql_post_select_email_file;
