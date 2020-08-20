@@ -114,10 +114,14 @@ div#editor {
 		<button class="button" onclick='insertSTitle()'>소제목 추가</button>
 		<button class="button" onclick='insertContent()'>내용 추가</button>
 	</div>
-	<div id="res"><div id="title"></div><div id="stitle"></div><div id="content"></div></div>
+	<div id="res">
+		<div id="title"></div>
+		<div id="stitle"></div>
+		<div id="content"></div>
+	</div>
 	<button class="button" onclick='deletePage()'>페이지 삭제</button>
 	<button class="button" onclick='savePage()'>저장</button>
-	
+
 	<script type="text/javascript"
 		src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
 	<script type="text/javascript"
@@ -204,8 +208,15 @@ div#editor {
 			type: "POST" 
 			,url: "DiaryContentsSave.do"
 			,data: {content:content,title:title,stitle:stitle}
-			
+			,success:function(data){
+				window.location.href = "/MZ/diary2.jsp";
+				
+			}
+			,error:function(data){
+				alert("error");
+			}
 			});
+			
 		}
 	</script>
 </body>

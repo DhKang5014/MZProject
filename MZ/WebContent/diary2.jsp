@@ -47,6 +47,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
 	vertical-align: baseline;
 }
 
+
 article, aside, details, figcaption, figure, footer, header, hgroup,
 	menu, nav, section {
 	display: block;
@@ -3165,6 +3166,16 @@ input[type="submit"].disabled, input[type="submit"]:disabled, input[type="reset"
 	margin-top: 0;
 	padding-top: 0;
 }
+.img_diary{
+	width : 400px;
+	height : 400px;
+}
+.diary_title{
+	font-size : 50px;
+}
+.img_title{
+	font-size : 30px;
+}
 </style>
 </head>
 <body class="is-preload">
@@ -3174,8 +3185,7 @@ input[type="submit"].disabled, input[type="submit"]:disabled, input[type="reset"
 		String email = dto.getEmail();
 		postDAO po_dao = new postDAO();
 		String result = po_dao.select_email(dto.getSql_post_select_email(), email);
-		
-%>
+	%>
 	<!-- Wrapper -->
 	<div id="wrapper">
 
@@ -3230,11 +3240,19 @@ input[type="submit"].disabled, input[type="submit"]:disabled, input[type="reset"
 				<section>
 					<header class="major">
 						<h2>내 다어이리 목록</h2>
+						<ul class="actions">
+									<li><a href="external.html" class="button">다이어리 작성하기</a></li>
+						</ul>
 					</header>
 					<div class="features">
-						<%=result %>
+							<%=result %>
 					</div>
+					
 				</section>
+
+			
+
+
 
 				<!-- Section -->
 				<section>
@@ -3249,7 +3267,7 @@ input[type="submit"].disabled, input[type="submit"]:disabled, input[type="reset"
 								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
 								nulla amet lorem feugiat tempus aliquam.</p>
 							<ul class="actions">
-								<li><a href="#" class="button">More</a></li>
+								<li><a href="imgDiary.jsp" class="button">More</a></li>
 							</ul>
 						</article>
 						<article>
@@ -3269,7 +3287,7 @@ input[type="submit"].disabled, input[type="submit"]:disabled, input[type="reset"
 								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
 								nulla amet lorem feugiat tempus aliquam.</p>
 							<ul class="actions">
-								<li><a href="#" class="button">More</a></li>
+								<li><a href="imgDiary.jsp" class="button">More</a></li>
 							</ul>
 						</article>
 						<article>
@@ -3279,7 +3297,7 @@ input[type="submit"].disabled, input[type="submit"]:disabled, input[type="reset"
 								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
 								nulla amet lorem feugiat tempus aliquam.</p>
 							<ul class="actions">
-								<li><a href="#" class="button">More</a></li>
+								<li><a href="imgDiary.jsp" class="button">More</a></li>
 							</ul>
 						</article>
 						<article>
@@ -3289,7 +3307,7 @@ input[type="submit"].disabled, input[type="submit"]:disabled, input[type="reset"
 								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
 								nulla amet lorem feugiat tempus aliquam.</p>
 							<ul class="actions">
-								<li><a href="#" class="button">More</a></li>
+								<li><a href="imgDiary.jsp" class="button">More</a></li>
 							</ul>
 						</article>
 						<article>
@@ -3299,7 +3317,7 @@ input[type="submit"].disabled, input[type="submit"]:disabled, input[type="reset"
 								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
 								nulla amet lorem feugiat tempus aliquam.</p>
 							<ul class="actions">
-								<li><a href="#" class="button">More</a></li>
+								<li><a href="imgDiary.jsp" class="button">More</a></li>
 							</ul>
 						</article>
 					</div>

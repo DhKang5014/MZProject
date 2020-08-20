@@ -98,11 +98,17 @@ public class postDAO extends DAO{
 		String str = "";
 		if (ar_dto.size() > 0) {
 			for (int i = 0; i < ar_dto.size(); i++) {
-				str += "<div id='"+i+"'>" + "<img src='"+ar_img_url.get(i)+"'><br/>";
-				str += "<a href='" + ar_dto.get(i)+"'>"+(i+1)+" 번째 다이어리</a><br/>";
-				str += "<h3>"+ar_title.get(i)+"<h3/>";
+				str += "<article>";
+				str += "<div id='"+i+"'>" + "<img src='"+ar_img_url.get(i)+"' class='img_diary'><br/>";
+				
+				//str += "<h3 class='img_title'>"+ar_title.get(i).replace(".html","")+"<h3/>";
+				//str += "<a class='diary_title' href='" + ar_dto.get(i)+"'>"+(i+1)+" 번째 다이어리</a><br/>";
+				
+				str += "<h3 class='img_title'>"+ (i+1)+" 번째 다이어리"+"</h3>";
+				str += "<a class='diary_title' href='" + ar_dto.get(i)+"'>"+"제목 : "+ar_title.get(i).replace(".html","")+"</a><br/>";
 				
 				
+				str += "</article>";
 			}
 			return str;
 		}

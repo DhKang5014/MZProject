@@ -147,11 +147,12 @@
 								
 								<%if(display_email!=null){%>
 									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">회원정보수정</button>
+									<a href="LogoutServiceCon.do"><button type="submit" class="btn btn-primary">로그아웃</button></a>
 									<button type="button" class="btn btn-primary" onclick="publihser()">PUBLISHER 신청</button>
 									<button type="button" class="btn btn-primary" onclick="subscriber()">SUBSCRIBER 신청</button>
 									<li><a href="#first" class="button big wide smooth-scroll-middle">Get Started</a></li>
 							<%}else{%>
-								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">로그인 및 회원가입</button>
+								<a href="login.html"><button type="submit" class="btn btn-primary">로그인</button></a>
 							<% }%>
 								
 								<%if(display_email==null){%>
@@ -241,7 +242,7 @@
 								  <div class="modal-dialog" role="document">
 									<div class="modal-content">
 									  <div class="modal-header">
-										<h5 class="modal-title" id="exampleModalLabel">회원정보 수정</h5>
+										<h5 class="modal-title" id="exampleModalLabel">회원정보수정</h5>
 										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										  <span aria-hidden="true">&times;</span>
 										</button>
@@ -265,7 +266,7 @@
 											<input type="text" class="form-control" id="gender" name="gender">
 										  </div>
 										  <div class="submit-form">
-										 	 <button type="submit" class="btn btn-primary">LOGIN</button>
+										 	 <button type="submit" class="btn btn-primary">변경</button>
 										  </div>
 										</form>
 										
