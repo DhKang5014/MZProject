@@ -1,53 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title id='file_name'>test5</title>
 </head>
-<style>
-    .k{
-        font-size:30px;
-    }
-    .line{
-        border : 100px solid black;
-    }
-   
-    
-    #table{
-        border : 20px solid yellow ;
-        padding : 0px;
-        margin : 100px;
-    }
 
-</style>
 <body>
-    <div id="edit1">
-        <div id="text">
-
-        </div>
+    <p>test5</p>
+    <div id="1">
+        <h1>External Shared Toolbar</h1>
+        <p>You can have more than one editor instance on the same page.
+            However, this will not affect the editing experience. You can even
+            drag and drop images from one editor to the other.</p>
+        <p><br></p>
+        <p><img src="http://localhost:8087/img/a/asdflkjafjlks.jpg" style="width: 300px;"
+                class="fr-fic fr-dib fr-draggable"></p>
     </div>
-    <div id="tf">
-        <img src="upload/a/asdflkjafjlks.jpg">
-        <a href="login.html"><button>로그인</button></a>
-        <p class="k">asdfasdf</p>
-    </div>
-    <table id="table">
-        <tr>
-            <th class="line">1번</th><th class="line">2번</th><th class="line">3번</th><th></th>
-        </tr>
-        <tr>
-            <td class="line">1</td><td class="line">1</td><td class="line">1</td><td><button>asdf</button></td>
-        </tr>
-    </table>
-
-
-
-    <script>
-        
-
-
-    </script>
+    <div id='temp'></div>
 </body>
+<script>function diary2() { var file_name = $('file_name').text() + '.html'console.log(file_name)$.ajax({ url: "getDiaryImgOrderFromDB", data: { file_name: file_name }, // HTTP 요청과 함께 서버로 보낼 데이터 			method: 'POST', // HTTP 요청 메소드(GET, POST 등) 			//dataType: 'json' // 서버에서 보내줄 데이터의 타입 			}) // HTTP 요청이 성공하면 요청한 데이터가 done() 메소드로 전달됨.			.done(function(data) { 				console.log(data);				console.log(JSON.parse(data));				$('temp').html(data)			}) // HTTP 요청이 실패하면 오류와 상태에 관한 정보가 fail() 메소드로 전달됨. 			.fail(function(xhr, status, errorThrown) { 				alert('실패');			}) //}diary2();</script>
+
 </html>

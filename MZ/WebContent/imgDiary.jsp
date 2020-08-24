@@ -138,7 +138,7 @@
 						</div>
 						<div class="inline">
 						 
-						 <button type="submit" onclick="place()">등록</button> 
+							<button type="submit" onclick="place()">등록</button> 
 						 
 						</div>
 					</header>
@@ -148,14 +148,14 @@
 						
 					<div id="main">
 					<div class="map_wrap">
-    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+    					<div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 
-    <div id="menu_wrap" class="bg_white">
+    					<div id="menu_wrap" class="bg_white">
 
-        <hr>
-        <ul id="placesList"></ul>
-        <div id="pagination"></div>
-    </div>
+        				<hr>
+       					<ul id="placesList"></ul>
+       					<div id="pagination"></div>
+    				</div>
 </div>
 					<%=main %>
 					<!-- <article class="thumb">
