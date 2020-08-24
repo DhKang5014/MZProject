@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.front.Command;
-import com.model.function.updateDAO;
+import com.model.function.dao.updateDAO;
 import com.model.master.DTO;
 
 public class AlterJoinServiceCon implements Command{

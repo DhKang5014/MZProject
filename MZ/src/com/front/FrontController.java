@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.controller.*;
-import com.model.function.MessageFunctionDAO;
-import com.model.function.joinDAO;
-import com.model.function.loginDAO;
-import com.model.function.selectDAO;
-import com.model.function.updateDAO;
+import com.model.function.DTO.MessageDTO;
+import com.model.function.dao.MessageFunctionDAO;
+import com.model.function.dao.joinDAO;
+import com.model.function.dao.loginDAO;
+import com.model.function.dao.selectDAO;
+import com.model.function.dao.updateDAO;
 import com.model.master.DTO;
-import com.model.master.MessageDTO;
 
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
@@ -77,8 +77,10 @@ public class FrontController extends HttpServlet {
 		}else if(resultURI.equals("DiaryContentsSave.do")) {
 			System.out.println("DiaryContentsSave.do 도입부 frontController");
 			command = new DiaryContentsSave();
+		}else if(resultURI.equals("saveDiaryImgOrder.do")) {
+			System.out.println("saveDiaryImgOrder.do 도입부 frontController");
+			command = new saveDiaryImgOrder();
 		}
-		
 		moveURL = command.execute(request,response);
 		if(moveURL.equals("dup_img")) {
 			moveURL="imgDiary.jsp";

@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.front.Command;
-import com.model.function.diaryMainDAO;
+import com.model.function.dao.diaryMainDAO;
 import com.model.master.DTO;
 
 public class DiaryContentsSave implements Command{

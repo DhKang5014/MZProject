@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.front.Command;
-import com.model.function.MessageFunctionDAO;
+import com.model.function.dao.MessageFunctionDAO;
 import com.model.master.DTO;
 
 public class MessageOneDeleteServiceCon implements Command {

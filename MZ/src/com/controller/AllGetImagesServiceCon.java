@@ -5,8 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.front.Command;
-import com.model.function.photoDAO;
-import com.model.function.photoDTO;
+import com.model.function.DTO.photoDTO;
+import com.model.function.dao.photoDAO;
 import com.model.master.DTO;
 
 public class AllGetImagesServiceCon implements Command {

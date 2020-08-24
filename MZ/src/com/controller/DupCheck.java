@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.front.Command;
-import com.model.function.joinDAO;
+import com.model.function.dao.joinDAO;
 import com.model.master.DTO;
 
 public class DupCheck implements Command{

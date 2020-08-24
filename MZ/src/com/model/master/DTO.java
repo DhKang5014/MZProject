@@ -32,7 +32,13 @@ public class DTO {
 	String sql_diary_main_select = "select * from diary_main where email = ? ";
 	String sql_diary_main_insert = "insert into diary_main values ( ? , ? , ? , ? )";
 	String sql_diary_main_update = "update diary_main set title = ? , stitle = ? , content = ? where email = ?";
-
+	String sql_diary_num_get_select = "select po_num from post where email = ? and po_title = ? ";
+	String sql_photo_order_insert = "insert into photo_order values( ? , ? , ? , ? , ? , ? )";
+	String sql_photo_order_select_one = "select * from photo_order where name = ? and email = ? and img_url = ? ";
+	String sql_photo_order_select_one_email = "select * from photo_order where email = ? ";
+	String sql_photo_order_select_where_po_num = "select * from photo_order where po_title = ? and email = ? and po_num = ?  ";
+	String sql_photo_order_join_select = "select * from (select a.name, a.email,a.img_url,a.num,a.lat,a.lon,a.plu_name,b.order_num,b.po_num,b.po_title from photo a inner join photo_order b on a.email = b.email and a.name = b.name) where email = ? and po_num = ? ";
+	
 	public DTO(String email, String pw, String name, int age, int gender) {
 		super();
 		this.email = email;
@@ -54,6 +60,31 @@ public class DTO {
 		super();
 		this.email = email;
 		System.out.println(email + " " + pw + " " + name + " " + age + " " + gender + " dto 생성 small");
+	}
+	
+	public String getSql_photo_order_join_select() {
+		return sql_photo_order_join_select;
+	}
+	
+	public String getSql_photo_order_select_where_po_num() {
+		return sql_photo_order_select_where_po_num;
+	}
+	
+	public String getSql_photo_order_select_one_email() {
+		return sql_photo_order_select_one_email;
+	}
+	
+	public String getSql_photo_order_select_one() {
+		return sql_photo_order_select_one;
+	}
+	
+	public String getSql_photo_order_insert() {
+		return sql_photo_order_insert;
+	}
+	
+	
+	public String getSql_diary_num_get_select() {
+		return sql_diary_num_get_select;
 	}
 
 

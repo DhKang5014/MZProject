@@ -11,6 +11,7 @@ import com.model.master.DTO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.model.function.*;
+import com.model.function.dao.photoDAO;
 
 public class ImgServer_update implements Command {
 

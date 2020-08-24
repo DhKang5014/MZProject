@@ -90,13 +90,13 @@
 				//msg = "";
 			}else{
 				dto = (DTO)user;
-				MessageFunctionDAO dao = new MessageFunctionDAO();
+				
 				display_email = dto.getEmail();
-				String user_msg = dao.select(display_email);
+				
 				display_name = dto.getName();
 				display_age = Integer.toString(dto.getAge());
 				display_gender = Integer.toString(dto.getGender());
-				msg = (String)user_msg;
+				
 			}
 		%>
 		

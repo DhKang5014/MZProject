@@ -5,6 +5,7 @@
 <%@ page import="javax.servlet.http.HttpServletResponse"%>
 <%@ page import="javax.servlet.http.HttpSession"%>
 <%@ page import="com.model.function.*"%>
+<%@ page import="com.model.function.dao.*"%>
 <%@ page import="java.util.ArrayList"%>
 <!DOCTYPE HTML>
 <!--
@@ -3241,7 +3242,7 @@ input[type="submit"].disabled, input[type="submit"]:disabled, input[type="reset"
 					<header class="major">
 						<h2>내 다어이리 목록</h2>
 						<ul class="actions">
-									<li><a href="external.html" class="button">다이어리 작성하기</a></li>
+									<li><a href="editDiary.html" class="button">다이어리 작성하기</a></li>
 						</ul>
 					</header>
 					<div class="features">
@@ -3426,7 +3427,7 @@ input[type="submit"].disabled, input[type="submit"]:disabled, input[type="reset"
 		</div>
 
 	</div>
-
+	<div id="temporary"></div>
 	<!-- Scripts -->
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/browser.min.js"></script>
@@ -3472,11 +3473,86 @@ input[type="submit"].disabled, input[type="submit"]:disabled, input[type="reset"
 			function test(n){
 				return img_dict[n]
 			}
-             
+        getImg();     
+		function diary(temp){
+			var file_name = $(temp).attr('href');
+			console.log(file_name);
+			var email = '<%=email%>';
+			console.log(email);
 			
-			getImg();
+			$.ajax(
+				{ 
+					url: "getDiaryImg", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
+					data: {
+						email: email,
+						file_name : file_name
+					}, // HTTP 요청과 함께 서버로 보낼 데이터 
+					method: "POST", // HTTP 요청 메소드(GET, POST 등) 
+					//dataType: "json" // 서버에서 보내줄 데이터의 타입 
+					}) // HTTP 요청이 성공하면 요청한 데이터가 done() 메소드로 전달됨.
+					.done(function(data) { 
+						console.log(data);
+						$('#temporary').html(data);
+						var ttt = $('#temporary img');
+						console.log(ttt);
+						console.log(ttt.length);
+						
+
+						var li = new Array();
+						for(var i=0;i<ttt.length;i++){
+							li[i]=ttt[i].currentSrc;
+						}
+						console.log(li.toString());
+
+						// DB 저장 AJAX
+						$.ajax({ url: "saveDiaryImgOrder.do", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
+							data: { email:email, file_name:file_name, src:li.toString() }, // HTTP 요청과 함께 서버로 보낼 데이터 
+							method: "POST", // HTTP 요청 메소드(GET, POST 등) 
+							//dataType: "json" // 서버에서 보내줄 데이터의 타입 
+							}) // HTTP 요청이 성공하면 요청한 데이터가 done() 메소드로 전달됨.
+							.done(function(data) { 
+								console.log("saveDiaryImgOrder  >>  data  " + data);
+						})
+						
 
 
+
+
+					}) // HTTP 요청이 실패하면 오류와 상태에 관한 정보가 fail() 메소드로 전달됨. 
+					.fail(function(xhr, status, errorThrown) { 
+						alert("실패");
+					}) //
+					
+		}
+			
+		
+		function diary2(temp){
+			var file_name = $(temp).attr('href');
+			console.log(file_name);
+			var email = '<%=email%>';
+			console.log(email);
+			
+			$.ajax(
+				{ 
+					url: "getDiaryImgOrderFromDB", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
+					data: {
+						email: email,
+						file_name : file_name
+					}, // HTTP 요청과 함께 서버로 보낼 데이터 
+					method: "POST", // HTTP 요청 메소드(GET, POST 등) 
+					//dataType: "json" // 서버에서 보내줄 데이터의 타입 
+					}) // HTTP 요청이 성공하면 요청한 데이터가 done() 메소드로 전달됨.
+					.done(function(data) { 
+						console.log(data);
+						console.log(JSON.parse(data));
+					}) // HTTP 요청이 실패하면 오류와 상태에 관한 정보가 fail() 메소드로 전달됨. 
+					.fail(function(xhr, status, errorThrown) { 
+						alert("실패");
+					}) //
+					
+		}
+
+		
 		function temp(){
 			$.ajax({ url: "getDiaryMain", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
 				//data: { name: "홍길동" }, // HTTP 요청과 함께 서버로 보낼 데이터 

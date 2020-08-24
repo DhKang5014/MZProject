@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+   rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Kaushan+Script"
+   rel="stylesheet">
+<link
+   href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700,700i"
+   rel="stylesheet">
+<link
+   href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+   rel="stylesheet">
+
+<style>
+#map {
+   width: 1642px;
+   height: 500px;
+   background-color: lightgray;
+   font-size: 100px;
+   
+}
+
+#imgfile {
+   width: 30%;
+   padding: 5px 5px 5px 5px;
+}
+
+#photo {
+   /* margin-right: 7px;
+   margin-left: 10%; */
+}
+
+body {
+   /* font-family: Mapo당인리발전소; */
+   text-align: center;
+}
+
+.search__container {
+   width: 430px;
+   margin: 0 auto;
+   padding-top: 32px;
+}
+
+.search__title {
+   font-size: 22px;
+   font-weight: 900;
+   text-align: center;
+   color: #ff8b88;
+}
+
+.search__input {
+   padding: 12px 24px;
+   background-color: transparent;
+   transition: transform 250ms ease-in-out;
+   font-size: 14px;
+   line-height: 18px;
+   color: #575756;
+   background-color: transparent;
+   /*         background-image: url(http://mihaeltomic.com/codepen/input-search/ic_search_black_24px.svg); */
+   background-repeat: no-repeat;
+   background-size: 18px 18px;
+   background-position: 95% center;
+   border-radius: 50px;
+   border: 1px solid #575756;
+   transition: all 250ms ease-in-out;
+   backface-visibility: hidden;
+   transform-style: preserve-3d;
+}
+
+.submit_input {
+   padding: 12px 24px;
+   background-color: transparent;
+   transition: transform 250ms ease-in-out;
+   font-size: 14px;
+   line-height: 18px;
+   color: #575756;
+   background-color: transparent;
+   background-repeat: no-repeat;
+   background-size: 18px 18px;
+   background-position: 95% center;
+   border-radius: 50px;
+   border: 1px solid #575756;
+   transition: all 250ms ease-in-out;
+   backface-visibility: hidden;
+   transform-style: preserve-3d;
+}
+
+.search__input::placeholder {
+   color: rgba(87, 87, 86, 0.8);
+   text-transform: uppercase;
+   letter-spacing: 1.5px;
+}
+
+.search__input:hover, .search__input:focus {
+   padding: 12px 0;
+   outline: 0;
+   border: 1px solid transparent;
+   border-bottom: 1px solid #575756;
+   border-radius: 0;
+   background-position: 100% center;
+}
+
+/* 업로드  */
+
+@-webkit-keyframes loader {
+  0% {
+    width: 0;
+  }
+  20% {
+    width: 10%;
+  }
+  25% {
+    width: 24%;
+  }
+  43% {
+    width: 41%;
+  }
+  56% {
+    width: 50%;
+  }
+  66% {
+    width: 52%;
+  }
+  71% {
+    width: 60%;
+  }
+  75% {
+    width: 76%;
+  }
+  94% {
+    width: 86%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes loader {
+  0% {
+    width: 0;
+  }
+  20% {
+    width: 10%;
+  }
+  25% {
+    width: 24%;
+  }
+  43% {
+    width: 41%;
+  }
+  56% {
+    width: 50%;
+  }
+  66% {
+    width: 52%;
+  }
+  71% {
+    width: 60%;
+  }
+  75% {
+    width: 76%;
+  }
+  94% {
+    width: 86%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+.progress-bar {
+  border-radius: 60px;
+  overflow: hidden;
+  width: 100%;
+}
+.progress-bar span {
+  display: block;
+}
+
+.bar {
+  background: rgba(0, 0, 0, 0.075);
+}
+
+.progress {
+  -webkit-animation: loader 8s ease infinite;
+          animation: loader 8s ease infinite;
+  background: #75b800;
+  color: #fff;
+  padding: 5px;
+  width: 0;
+}
+
+.progress-bar {
+  /* left: 50%; */
+  max-width: 35%;
+  position: absolute;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+          transform: translate3d(-50%, -50%, 0);
+}
+
+#file_button{
+   width: 100px;
+}
+
+#ptbtn{
+   height: 200px;
+}
+</style>
+
+</head>
+<body>
+   <div style = "font-family: 'Kaushan Script', cursive; font-size: 80px; margin-bottom: 20px; " >My map</div>
+   <!-- 지도 표시할 부분  -->
+   <div id="map" style="margin-right: 138px; margin-left: 138px;">
+      <!--    <span style="font-family:">지도가 나오면 됨미다</span> -->
+      </div>
+
+   <!-- 사진표시할 부분 -->
+   <div style="text-align: center;">
+   <div id="photo">
+      <p style="font-family:'Kaushan Script', cursive; font-size: 50px;">PHOTO LIBRARY<p>사진을 업로드해주세요.</p></p>
+   
+   </div>
+   
+      <span >
+      <div style="border: 4px dashed #bcbcbc; margin-right: 138px; margin-left: 138px;">
+         <img id="imgfile" src="assets/images/excited.jpg" style="width: 250px;"> 
+         <img id="imgfile" src="assets/images/test01.jpg" style="width: 250px;"> 
+         <img id="imgfile" src="assets/images/test02.jpg" style="width: 250px;">
+         <img id="imgfile" src="assets/images/test03.jpg" style="width: 250px;">
+         <img id="imgfile" src="assets/images/excited.jpg" style="width: 250px;"> 
+         <img id="imgfile" src="assets/images/test01.jpg" style="width: 250px;"> 
+         <img id="imgfile" src="assets/images/test01.jpg" style="width: 250px;"> 
+         <img id="imgfile" src="assets/images/test02.jpg" style="width: 250px;">
+         <img id="imgfile" src="assets/images/test03.jpg" style="width: 250px;">
+         <img id="imgfile" src="assets/images/test01.jpg" style="width: 250px;"> 
+         <img id="imgfile" src="assets/images/test02.jpg" style="width: 250px;">
+         <img id="imgfile" src="assets/images/test03.jpg" style="width: 250px;">
+      </div >
+      </span>
+   </div>
+
+   <!-- 파일 업로드 부분 -->
+   <div id="ptbtn" style="margin-top: 50px; background-color: lightgray; padding-top: 60px;">
+      <div>
+         <form action="upload" in="uploadForm">
+      
+         <div style = "display: inline;"><input type="file" name="file" style="display: none"></div>
+      </form>
+      <table width="50%" align="center" >
+            <tr>
+               <td width="5%">
+                  <div class="file_button" style="width: 100px;display:inline;" onclick="oneclick=document.all.file.click()">
+                     <img src="assets/images/upload.png"style="width: 30px; height: 30px; display: inline;" >
+                  </div>               
+               </td>
+               <td width="40%">
+                  <div class="progress-bar" style = "display : inline;">
+                     <span class="bar"> <span class="progress"></span></span>
+                  </div>               
+               </td>
+               <td width="5%">
+                  <div style="display:inline;">
+                     <input class="submit_input" type="submit" value="저장">
+                  </div>               
+               </td>
+            </tr>
+         </table>
+   </div>
+
+   <!-- 버튼/input부분 -->
+
+   
+      <div class="search__container" style="width: 100%;">
+         <input class="search__input" type="text" placeholder="사진선택">
+         <input class="search__input" type="text" placeholder="검색어"> 
+         <input class="submit_input" type="submit" value="검색"> 
+         <br><br>
+         <input class="search__input" type="text" placeholder="위도"> 
+         <input class="search__input" type="text" placeholder="경도"> 
+         <input class="search__input" type="text" placeholder="장소명"> 
+         <input class="submit_input" type="submit" value="등록">
+      </div>
+   </div>
+</body>
+</html>

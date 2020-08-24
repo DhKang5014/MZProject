@@ -4,8 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.front.Command;
-import com.model.function.MessageFunctionDAO;
-import com.model.master.MessageDTO;
+import com.model.function.DTO.MessageDTO;
+import com.model.function.dao.MessageFunctionDAO;
 
 public class MessageServiceCon implements Command{
 

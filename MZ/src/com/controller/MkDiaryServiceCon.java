@@ -5,8 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.front.Command;
-import com.model.function.photoDAO;
-import com.model.function.postDAO;
+import com.model.function.dao.photoDAO;
+import com.model.function.dao.postDAO;
 import com.model.master.DAO;
 import com.model.master.DTO;
 import com.oreilly.servlet.MultipartRequest;
@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
 
@@ -130,11 +131,11 @@ public class MkDiaryServiceCon implements Command {
 		postDAO po_dao = new postDAO();
 		DTO dao = new DTO(email);
 		int cnt = po_dao.select_email_title(dto.getSql_post_select_email_file(), email, file_name);
-		if(cnt==0) po_dao.insert(dto.getSql_post_insert(), file_name, email, img_url);
+		if(cnt==0) {
+			po_dao.insert(dto.getSql_post_insert(), file_name, email, img_url);
+		}
 		
-		
-		
-		return "external.html";
+		return "saveDiaryImgOrder";
 	}
 
 }

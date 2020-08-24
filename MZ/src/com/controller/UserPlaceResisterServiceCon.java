@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.front.Command;
-import com.model.function.photoDAO;
+import com.model.function.dao.photoDAO;
 import com.model.master.DTO;
 
 public class UserPlaceResisterServiceCon implements Command{
@@ -25,9 +25,8 @@ public class UserPlaceResisterServiceCon implements Command{
 		Object obj = session.getAttribute("user");
 		DTO dto = (DTO) obj;
 		String email = dto.getEmail();
-		String sql_photo_latlon_insert = "insert into photo(lat,lon,plu_name) where name = ? and email = ?";
 		photoDAO ph_dao = new photoDAO();
-		int cnt = ph_dao.insert_latlon(dto.getSql_photo_latlon_insert(), lat, lon, plu_name, file_name, email);
+		int cnt = ph_dao.insert_latlon(dto.getSql_photo_latlon_insert(), lat, lon, plu_name, file_name.toLowerCase(), email);
 		if(cnt==0) {
 			move_URL ="imgDiary.jsp";
 		}else {
