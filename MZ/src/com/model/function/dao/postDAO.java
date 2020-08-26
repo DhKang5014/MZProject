@@ -101,7 +101,7 @@ public class postDAO extends DAO{
 				title = rs.getString(2);
 				img_url = rs.getString(4);
 				ar_String.add(html_path+"/"+email+"/"+title);
-				ar_img_url.add(img_url);
+				ar_img_url.add("/img/"+email+"/"+img_url);
 				ar_title.add(title);
 			}
 		} catch (SQLException e) {
@@ -120,17 +120,20 @@ public class postDAO extends DAO{
 		String str = "";
 		if (ar_dto.size() > 0) {
 			for (int i = 0; i < ar_dto.size(); i++) {
-				str += "<article>";
-				str += "<div id='"+i+"'>" + "<img src='"+ar_img_url.get(i)+"' class='img_diary'><br/>";
+				str += "<div style='width:100%;'>";
+				str += "<div style='display:block; height:300px; margin-bottom:30px;' id='"+i+"'>" + "<img src='"+ar_img_url.get(i)+"' class='img_diary' style='margin-left:50px; float:left; height:300px; width:300px;'>";
 				
 				//str += "<h3 class='img_title'>"+ar_title.get(i).replace(".html","")+"<h3/>";
 				//str += "<a class='diary_title' href='" + ar_dto.get(i)+"'>"+(i+1)+" 번째 다이어리</a><br/>";
 				
-				str += "<h3 class='diary_title'>"+ (i+1)+" 번째 다이어리"+"</h3>";
-				str += "<a id='diary_" + i + "' class='diary_title' href='" + ar_dto.get(i)+"'>"+"제목 : "+ar_title.get(i).replace(".html","")+"</a><br/>";
+				str += "<h1 style='display:inline; width: 30%; font-family:마포당인리발전소; text-align:center; margin-left:20px;' class='diary_title'>"+
+				 "<a id='diary_" + i + "' class='diary_title' href='" + ar_dto.get(i)+"' style='font-size:40px'>"+"Title  <br/>"+ar_title.get(i).replace(".html","")+"</a>"  +"</h1>";
+				//str += "<a id='diary_" + i + "' class='diary_title' href='" + ar_dto.get(i)+"'>"+"제목 : "+ar_title.get(i).replace(".html","")+"</a>";
 				//str += "<input type='submit' onclick='diary(diary_"+i+")' value='여행 루트 저장하기'>";
 				//str += "<input type='submit' onclick='diary2(diary_"+i+")' value='여행 루트 다이어리에 넣기'>";
-				str += "</article>";
+				str += "<br/><button style='color:black;font-size:30px;' onclick='make_book("+i+")'>책만들기</button><br/>";
+				str += "<button id='machine'"+i+" onclick='next("+i+")'>다음 행선지 추천받기</button>";
+				str += "</div></div>";
 			}
 			return str;
 		}

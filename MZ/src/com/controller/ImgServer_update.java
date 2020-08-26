@@ -20,7 +20,7 @@ public class ImgServer_update implements Command {
 		HttpSession session = request.getSession();
 		Object obj = session.getAttribute("user");
 		DTO dto = (DTO) obj;
-
+		System.out.println("ImgServer_update IN IN IN");
 		String email = dto.getEmail();
 		System.out.println("이미지 저장한 사람의 email : " + email);
 		String fileName = "";
@@ -34,7 +34,7 @@ public class ImgServer_update implements Command {
 			try {
 				MultipartRequest multi = new MultipartRequest( // MultipartRequest 인스턴스 생성(cos.jar의 라이브러리)
 						request, uploadPath, // 파일을 저장할 디렉토리 지정
-						1000 * 1024, // 첨부파일 최대 용량 설정(bite) / 10KB / 용량 초과 시 예외 발생
+						10000 * 1024, // 첨부파일 최대 용량 설정(bite) / 10KB / 용량 초과 시 예외 발생
 						"utf-8"//, // 인코딩 방식 지정
 						//new DefaultFileRenamePolicy() // 중복 파일 처리(동일한 파일명이 업로드되면 뒤에 숫자 등을 붙여 중복 회피)
 				);
@@ -47,18 +47,20 @@ public class ImgServer_update implements Command {
 				 * =(String)files.nextElement(); // 첫번째 type="file"의 name 저장 String file2
 				 * =(String)files.nextElement(); // 두번째 type="file"의 name 저장
 				 */
-
+				String[] name = uploadPath.split("\\\\");
+				System.out.println(name.toString());
 				fileName = multi.getFilesystemName("file"); // name=file1의 업로드된 시스템 파일명을 구함(중복된 파일이 있으면, 중복 처리 후 파일 이름)
 				orgfileName = multi.getOriginalFileName("file"); // name=file1의 업로드된 원본파일 이름을 구함(중복 처리 전 이름)
+				System.out.println("ImgServer_update fileName 2 IN IN IN >> "+fileName);
 				String result = dao.dup_check(dto.getSql_photo_dup_check(), fileName, email);
 				if(result == null)dao.insert( dto.getSql_photo_insert(),fileName, email,uploadPath);
 
 			} catch (Exception e) {
-				e.getStackTrace();
-				return "dup_img";
+				e.printStackTrace();
+				System.out.println("ImgServer_update 오류 오류 오류");
 			} // 업로드 종료
 		
-		return "imgDiary.jsp";
+		return "imgServer.jsp";
 	}
 
 }

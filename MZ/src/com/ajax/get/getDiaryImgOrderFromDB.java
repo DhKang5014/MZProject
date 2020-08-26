@@ -29,9 +29,9 @@ public class getDiaryImgOrderFromDB extends HttpServlet {
 		DTO dto  = (DTO)session.getAttribute("user");
 		String email = dto.getEmail();
 		String file_name = request.getParameter("file_name");
-		System.out.println("com.front In getDiaryImgOrderFromDB ,, ajax >> email >> "+email);
+		System.out.println("com.front In getDiaryImgOrderFromDB ,, ajax >> email >> " + email);
 		file_name = "mkhtml/"+email+"/"+file_name;
-		System.out.println("com.front In getDiaryImgOrderFromDB ,, ajax >> file_name >> "+file_name);
+		System.out.println("com.front In getDiaryImgOrderFromDB ,, ajax >> file_name >> " + file_name);
 		
 		ArrayList<String> ar = null;
 		postDAO postdao = new postDAO(); 

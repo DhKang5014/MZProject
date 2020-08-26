@@ -16,12 +16,13 @@ public class DTO {
 	String img_path = "C:/Users/SMHRD/git/MZProject/MZ/WebContent/upload";
 	String sql_join = "insert into USERS values ( ? , ? , ? , ? , ? )";
 	String sql_login = "select * from USERS where EMAIL = ? and PW = ?";
+	String sql_login_only_email = "select * from USERS where EMAIL = ? ";
 	String sql_update = "update USERS set pw = ?, NAME = ?, AGE= ?, GENDER= ? where EMAIL= ?";
 	String sql_email_dup_check = "select * from users where email = ?";
 	String sql_photo_insert = "insert into photo(name,email,img_url,num) values ( ? , ? , ? , photo_se.nextval )";
 	String sql_photo_dup_check = "select name,email,img_url,num from photo where name = ? and email = ?";
 	String sql_photo_select_all = "select name,email,img_url,num,plu_name from photo where email = ?";
-	String sql_photo_latlon_insert = "UPDATE photo SET lat = ? , lon = ? , plu_name = ? WHERE name = ? and email = ?";
+	String sql_photo_latlon_insert = "UPDATE photo SET lat = ? , lon = ? , plu_name = ? , day = to_date( ? , 'yyyy/mm/dd hh24:mi' ) WHERE name = ? and email = ?";
 	String sql_publisher_check = "select * from publisher where email = ?";
 	String sql_publisher_insert = "insert into publisher values( ? )";
 	String sql_subscriber_check = "select * from subscriber where email = ?";
@@ -38,7 +39,7 @@ public class DTO {
 	String sql_photo_order_select_one_email = "select * from photo_order where email = ? ";
 	String sql_photo_order_select_where_po_num = "select * from photo_order where po_title = ? and email = ? and po_num = ?  ";
 	String sql_photo_order_join_select = "select * from (select a.name, a.email,a.img_url,a.num,a.lat,a.lon,a.plu_name,b.order_num,b.po_num,b.po_title from photo a inner join photo_order b on a.email = b.email and a.name = b.name) where email = ? and po_num = ? ";
-	
+
 	public DTO(String email, String pw, String name, int age, int gender) {
 		super();
 		this.email = email;
@@ -60,6 +61,10 @@ public class DTO {
 		super();
 		this.email = email;
 		System.out.println(email + " " + pw + " " + name + " " + age + " " + gender + " dto 생성 small");
+	}
+
+	public String getSql_login_only_email() {
+		return sql_login_only_email;
 	}
 	
 	public String getSql_photo_order_join_select() {

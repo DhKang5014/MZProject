@@ -32,7 +32,10 @@ public class getImages extends HttpServlet {
 		ArrayList<temp> result = dao.select_diary_img(dto.getSql_photo_select_all(), email);
 		String str = "{";
 		for(int i=0;i<result.size();i++) {
-			str += "\""+i + "\":\"" + result.get(i).path+"\",";
+			System.out.println("getImages IN IN IN " + result.get(i).path.split("/").toString());
+			String new_path = "/img/"+result.get(i).path.split("/")[1] + "/" + result.get(i).path.split("/")[2];
+			System.out.println("new Path >> " + new_path);
+			str += "\""+i + "\":\"" + new_path +"\",";
 			str += "\""+i + "_name\":\"" + result.get(i).name+"\",";
 			str += "\""+i + "_plu_name\":\"" + result.get(i).plu_name + "\"";
 			if(i!=result.size()-1) {

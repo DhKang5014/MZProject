@@ -40,8 +40,9 @@
    
 }
 
-#imgfile {
+.imgfile {
    width: 30%;
+   height: 100%;
    padding: 5px 5px 5px 5px;
 }
 
@@ -60,6 +61,7 @@ body {
    height: 700px;
    margin: 0 auto;
    padding-top: 32px;
+   
 }
 
 .search__title {
@@ -269,7 +271,15 @@ body {
 #pagination {margin:10px auto;text-align: center;}
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
-
+.hidden{
+	display:none;
+}
+.container{
+	display:inline-block;
+	margin : 40px;
+	height: 250px;
+	width : 250px;
+}
 
 
 </style>
@@ -301,7 +311,6 @@ body {
       </div>
 
    <!-- 사진표시할 부분 -->
-   <%=main %>
    <div style="text-align: center;">
       
    <div id="photo">
@@ -311,27 +320,31 @@ body {
       
       <span >
       <div style="border: 4px dashed #bcbcbc; margin-right: 138px; margin-left: 138px;">
-         <img id="imgfile" src="assets_imgServer/images/excited.jpg" style="width: 250px;"> 
-         <img id="imgfile" src="assets_imgServer/images/test01.jpg" style="width: 250px;"> 
-         <img id="imgfile" src="assets_imgServer/images/test02.jpg" style="width: 250px;">
-         <img id="imgfile" src="assets_imgServer/images/test03.jpg" style="width: 250px;">
-         <img id="imgfile" src="assets_imgServer/images/excited.jpg" style="width: 250px;"> 
-         <img id="imgfile" src="assets_imgServer/images/test01.jpg" style="width: 250px;"> 
-         <img id="imgfile" src="assets_imgServer/images/test01.jpg" style="width: 250px;"> 
-         <img id="imgfile" src="assets_imgServer/images/test02.jpg" style="width: 250px;">
-         <img id="imgfile" src="assets_imgServer/images/test03.jpg" style="width: 250px;">
-         <img id="imgfile" src="assets_imgServer/images/test01.jpg" style="width: 250px;"> 
-         <img id="imgfile" src="assets_imgServer/images/test02.jpg" style="width: 250px;">
-         <img id="imgfile" src="assets_imgServer/images/test03.jpg" style="width: 250px;">
-      </div >
+      <div>
+      <%=main %>
+      </div>
+<!--          <img class="imgfile" src="assets_imgServer/images/excited.jpg" style="width: 250px;"> 
+         <img class="imgfile" src="assets_imgServer/images/test01.jpg" style="width: 250px;"> 
+         <img class="imgfile" src="assets_imgServer/images/test02.jpg" style="width: 250px;">
+         <img class="imgfile" src="assets_imgServer/images/test03.jpg" style="width: 250px;">
+         <img class="imgfile" src="assets_imgServer/images/excited.jpg" style="width: 250px;"> 
+         <img class="imgfile" src="assets_imgServer/images/test01.jpg" style="width: 250px;"> 
+         <img class="imgfile" src="assets_imgServer/images/test01.jpg" style="width: 250px;"> 
+         <img class="imgfile" src="assets_imgServer/images/test02.jpg" style="width: 250px;">
+         <img class="imgfile" src="assets_imgServer/images/test03.jpg" style="width: 250px;">
+         <img class="imgfile" src="assets_imgServer/images/test01.jpg" style="width: 250px;"> 
+         <img class="imgfile" src="assets_imgServer/images/test02.jpg" style="width: 250px;">
+         <img class="imgfile" src="assets_imgServer/images/test03.jpg" style="width: 250px;"> -->
+      </div>
       </span>
    </div>
 
    <!-- 파일 업로드 부분 -->
    <div id="ptbtn" style="margin-top: 50px; background-color: lightgray; padding-top: 60px; height: 400px;">
+   <form action="ImgServer_update.do" method="post" enctype="multipart/form-data">
       <div>
       
-      <form action="ImgServer_update.do" method="post" enctype="multipart/form-data">
+      
       
          <div style = "display: inline;"><input type="file" name="file" style="display: none"></div>
       
@@ -340,7 +353,7 @@ body {
             <tr>
                <td width="5%">
                   <div class="file_button" style="width: 100px;display:inline;" onclick="oneclick=document.all.file.click()">
-                     <img src="assets/images/upload.png"style="width: 30px; height: 30px; display: inline;" >
+                     <img src="assets_imgServer/images/upload.png"style="width: 30px; height: 30px; display: inline;" >
                   </div>               
                </td>
                <td width="40%">
@@ -354,15 +367,15 @@ body {
                   </div>               
                </td>
             </tr>
-		</form>
+		
         </table>
    </div>
-
+</form>
    <!-- 버튼/input부분 -->
 
    
       <div class="search__container" style="width: 100%;">
-         <input class="search__input" type="text" placeholder="사진선택">
+         
          
          <input class="search__input" type="text" placeholder="검색어" id="keyword" value="조선대 맛집">
          <form onsubmit="searchPlaces(); return false;">
@@ -370,12 +383,13 @@ body {
          </form>
          <br><br><br>
          <br><br>
+         <input class="search__input" type="text" placeholder="사진선택" id="selected_img" name ="selected_img">
          <input class="search__input" type="text" placeholder="위도" name="lat" id="lat"> 
          <input class="search__input" type="text" placeholder="경도" name="lon" id="lon"> 
          <input class="search__input" type="text" placeholder="장소명" name="place_name" id="place_name"> 
 		 <!-- DATE, TIME -->
             <input  class="search__input" type="date" value="2020-08-24" name="date" id="date">
-            <input class="search__input" type="time" name="time" name="time"> 
+            <input class="search__input" type="time" id="time" name="time"> 
          <input class="submit_input" type="submit" value="등록" onclick="place()">
       </div>
    </div>
@@ -641,21 +655,25 @@ body {
 				 var lat = document.getElementById("lat").value;
 				 var lon = document.getElementById("lon").value;
 				 var place_name = document.getElementById("place_name").value;
-				 var date = $('date').val;
-				 var time = $('time').val;
+				 var date = $('#date').val();
+				 var time = $('#time').val();
 				 console.log("date >> " + date);
 				 console.log("time >> " + time);
-				console.log("place() function");	
+				 console.log("place_name >> " + place_name);
+				console.log("place() function");
+				console.log("date + time >> " + date +" "+ time);
+				var date_time = date + " " + time;
+				
 				$.ajax({  
 				type: "POST" 
 				,url: "/MZ/UserPlaceResisterServiceCon.do"
-				,data: {file_name:file_name,lat:lat,lon:lon,place_name:place_name}
-				,success:function(data){
-					alert("성공");
-				}
-				,error:function(data){
-					alert("error");
-				}
+				,data: {file_name:file_name,lat:lat,lon:lon,place_name:place_name,date_time:date_time}
+				//,success:function(data){
+				//	alert("성공");
+				//}
+				//,error:function(data){
+				//	alert("error");
+				//}
 				});
 			}
 

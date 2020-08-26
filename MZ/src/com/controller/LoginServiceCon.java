@@ -1,5 +1,8 @@
 package com.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -27,19 +30,18 @@ public class LoginServiceCon implements Command{
 		DTO dto_out = dao.login(dto.getSql_login(), dto.getEmail(), dto.getPw());
 		MessageFunctionDAO dao_msg = new MessageFunctionDAO();
 		if (dto_out != null) {
-			System.out.println(dto_out.getEmail());
-			System.out.println(dto_out.getPw());
-			System.out.println(dto_out.getName());
-			System.out.println(dto_out.getAge());
-			System.out.println(dto_out.getGender());
+			System.out.println("LoginServiceCon >> email >>" + dto_out.getEmail());
+			System.out.println("LoginServiceCon >> pw >>" + dto_out.getPw());
+			System.out.println("LoginServiceCon >> name >>" + dto_out.getName());
+			System.out.println("LoginServiceCon >> age >>" + dto_out.getAge());
+			System.out.println("LoginServiceCon >> gender >>" + dto_out.getGender());
 			html = dao_msg.select(email);
 			HttpSession session = request.getSession();
 			session.setAttribute("user", dto_out);
 			session.setAttribute("msg", html);
-		} else {
-			return "fail";
-		}
-		return "main.jsp";
+		} 
+		return "index.jsp?email="+email;
+		
 	}
 
 }

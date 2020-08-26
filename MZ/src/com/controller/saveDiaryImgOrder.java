@@ -17,7 +17,7 @@ public class saveDiaryImgOrder implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		response.setContentType("text/html; charset=UTF-8");
+		
 		HttpSession session = request.getSession();
 		Object obj = session.getAttribute("user");
 		DTO dto = (DTO)obj;
