@@ -193,4 +193,44 @@ public class photoDAO extends DAO {
 		return cnt;
 
 	}
+	
+	public ArrayList<photoDTO> select_lat_lon_from_email(String sql, String email) {
+		ArrayList<photoDTO> ar_dto = new ArrayList<photoDTO>();
+		String dto_out = null;
+		try {
+			psmt(sql);
+			getPsmt().setString(1, email);
+			rs = getPsmt().executeQuery();
+			String name = null;
+			//email
+			String img_url = null;
+			int num = 0;
+			double lat = 0;
+			double lon = 0;
+			String plu_name = null;
+			String day = null;
+			while (rs.next()) {
+				name = rs.getString(1);
+				email = rs.getString(2);
+				img_url = rs.getString(3);
+				num = rs.getInt(4);
+				lat = rs.getDouble(5);
+				lon = rs.getDouble(6);
+				plu_name = rs.getString(7);
+				day = rs.getString(8);
+				
+				
+				ar_dto.add(new photoDTO(name, email, img_url, num,lat,lon,plu_name,day));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+
+		return ar_dto;
+	}
+	
+	
 }

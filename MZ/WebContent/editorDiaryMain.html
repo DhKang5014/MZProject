@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html id="k">
+<html id="ko">
 
 <head>
 <meta charset="utf-8">
@@ -7,7 +7,7 @@
 <meta name="viewport"
 	content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0" />
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+	href="https://cdnjs.cloudflare.c3om/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css2/froala_editor.css">
 <link rel="stylesheet" href="css2/froala_style.css">
 <link rel="stylesheet" href="css2/plugins/code_view.css">
@@ -24,8 +24,23 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
 
+<!--Google Font link-->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Kaushan+Script"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700,700i"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet">
+
+
+
 <style>
 body {
+	/* background-color : lightgray; */
 	text-align: center;
 	margin: 0;
 	margin-top: 100px;
@@ -38,15 +53,11 @@ div#editor {
 }
 
 #foo {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	z-index: 2;
+	
 }
 
 .button {
-	display: inline-block;
+	/* 	display: inline-block;
 	border-radius: 4px;
 	background-color: #f4511e;
 	border: none;
@@ -57,7 +68,22 @@ div#editor {
 	width: 200px;
 	transition: all 0.5s;
 	cursor: pointer;
-	margin: 5px;
+	margin: 5px; */
+	padding: 12px 24px;
+	background-color: transparent;
+	transition: transform 250ms ease-in-out;
+	font-size: 14px;
+	line-height: 18px;
+	color: #575756;
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-size: 18px 18px;
+	background-position: 95% center;
+	border-radius: 50px;
+	border: 1px solid #575756;
+	transition: all 250ms ease-in-out;
+	backface-visibility: hidden;
+	transform-style: preserve-3d;
 }
 
 .button span {
@@ -89,39 +115,73 @@ div#editor {
 	text-align: left;
 	align-content: flex-start;
 }
+
+#title {
+	display: none;
+}
+
+#stitle {
+	display: none;
+}
+
+#content {
+	display: none;
+}
 </style>
 </head>
 
 <body id='kk'>
-	<div id="foo"></div>
-	<div id="editor">
-		<div id="edit1">
-			<h1>여기에 대제목을 입력해 주세요.</h1>
+	<section id="banner">
+		<div style="">
+			<div
+				style="background-color: lightgray; width: 700px; margin: 0 auto;">
+				<h1 style="font-family: 'Kaushan Script', cursive; font-size: 80px;">Diary
+					Main</h1>
+			</div>
 		</div>
-		<div id="edit">
-			<h1>여기에 소제목을 입력해 주세요.</h1>
-		</div>
-		<div id="edit2">
-			<h1>External Shared Toolbar</h1>
+		<br>
 
-			<p>You can have more than one editor instance on the same page.
-				However, this will not affect the editing experience. You can even
-				drag and drop images from one editor to the other.</p>
+		<div>
+			<button class="button" onclick='insertTitle()'
+				style="margin-right: 30px;">대제목 추가</button>
+			<button class="button" onclick='insertSTitle()'
+				style="margin-right: 30px;">소제목 추가</button>
+			<button class="button" onclick='insertContent()'
+				style="margin-right: 30px;">내용 추가</button>
+			<button class="button" onclick='deletePage()'
+				style="margin-right: 30px;">페이지 삭제</button>
+			<button class="button" onclick='savePage()'
+				style="margin-right: 30px;">저장</button>
 		</div>
-	</div>
-	<div>
-		<button class="button" onclick='insertTitle()'>대제목 추가</button>
-		<button class="button" onclick='insertSTitle()'>소제목 추가</button>
-		<button class="button" onclick='insertContent()'>내용 추가</button>
-	</div>
-	<div id="res">
-		<div id="title"></div>
-		<div id="stitle"></div>
-		<div id="content"></div>
-	</div>
-	<button class="button" onclick='deletePage()'>페이지 삭제</button>
-	<button class="button" onclick='savePage()'>저장</button>
+		<div id="foo"></div>
 
+
+		<br> <br>
+		<div id="editor">
+			<div id="edit1">
+				<h1>여기에 대제목을 입력해 주세요.</h1>
+			</div>
+			<br> <br>
+			<div id="edit">
+				<h1>여기에 소제목을 입력해 주세요.</h1>
+			</div>
+			<br> <br>
+			<div id="edit2">
+				<h1>External Shared Toolbar</h1>
+
+				<p>You can have more than one editor instance on the same page.
+					However, this will not affect the editing experience. You can even
+					drag and drop images from one editor to the other.</p>
+			</div>
+		</div>
+		<br> <br> <br> <br>
+		<div id="res">
+			<div id="title"></div>
+			<div id="stitle"></div>
+			<div id="content"></div>
+		</div>
+
+	</section>
 	<script type="text/javascript"
 		src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
 	<script type="text/javascript"
@@ -209,14 +269,13 @@ div#editor {
 			,url: "DiaryContentsSave.do"
 			,data: {content:content,title:title,stitle:stitle}
 			,success:function(data){
-				window.location.href = "/MZ/diary2.jsp";
 				
 			}
 			,error:function(data){
 				alert("error");
 			}
 			});
-			
+			location.href = "/MZ/diary.jsp";	
 		}
 	</script>
 </body>

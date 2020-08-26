@@ -8,3 +8,16 @@ select * from (select a.name, a.email,a.img_url,a.num,a.lat,a.lon,a.plu_name,b.o
 select * from photo;
 select * from photo_order;
 
+
+select u.email,u.name,u.age,u.gender,p.po_title,p.img_url from users u inner join post p on u.email = p.email;
+
+
+
+select * from (select u.email,u.name,u.age,u.gender,p.po_title,p.img_url from users u inner join post p on u.email = p.email) where email = 'a';
+
+
+
+
+
+select * from photo where email = 'a';
+

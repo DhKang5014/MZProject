@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.model.master.*" %>
+
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -351,15 +352,15 @@ input.img-button {
 									<div class="col-xs-6">
 										<div class="features_item_text">
 											<!-- <input type="button" class="img-button"> -->
-											<a href="editDiary.html"><img src="assets_imgServer/images/diary.png"
+											<a href="editorDiary.html"><img src="assets_imgServer/images/diary.png"
 												alt="" class="img-circle"/ ></a>
-											<a href="editDiary.html"><p class="m-top-20">나만의 다이어리 쓰기</p></a>
+											<a href="editorDiary.html"><p class="m-top-20">나만의 다이어리 쓰기</p></a>
 										</div>
 									</div>
 									<div class="col-xs-6">
 										<div class="features_item_text">
-											<a href="search.html"><img src="assets_imgServer/images/search.png" alt="" class="img-circle" /></a>
-											<a href="search.html"><p class="m-top-20">검색하기</p></a>
+											<a href="Search.jsp"><img src="assets_imgServer/images/search.png" alt="" class="img-circle" /></a>
+											<a href="Search.jsp"><p class="m-top-20">검색하기</p></a>
 										</div>
 									</div>
 									<div class="col-xs-6">
@@ -371,10 +372,10 @@ input.img-button {
 									</div>
 									<div class="col-xs-6">
 										<div class="features_item_text m-top-50">
-											<a href="book.html"><img src="assets_imgServer/images/book.png"
+											<a href="entire_map.jsp"><img src="assets_imgServer/images/book.png"
 												alt="" class="img-circle" /></a>
 											
-											<a href="book.html"><p class="m-top-20">책만들기</p></a>
+											<a href="entire_map.jsp"><p class="m-top-20">나의 여행지 지도</p></a>
 										</div>
 									</div>
 

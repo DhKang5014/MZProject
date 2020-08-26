@@ -80,6 +80,8 @@ public class FrontController extends HttpServlet {
 		}else if(resultURI.equals("saveDiaryImgOrder.do")) {
 			System.out.println("saveDiaryImgOrder.do 도입부 frontController");
 			command = new saveDiaryImgOrder();
+		}else if(resultURI.equals("getHtmlServiceCon.do")) {
+			command = new getHtmlServiceCon();
 		}
 		moveURL = command.execute(request,response);
 		if(moveURL.equals("dup_img")) {

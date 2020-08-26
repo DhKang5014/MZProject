@@ -39,18 +39,17 @@ public class getDiaryHTML extends HttpServlet {
             //입력 스트림 생성
             
             bufferedReader = new BufferedReader(new FileReader(path));
-            
+            String line = "";
             while(true) {
-                String line = bufferedReader.readLine();
-                
-                if(line == null) {
+                String text = bufferedReader.readLine();
+                line += text;
+                if(text == null) {
                     break;
                 }
-                
-                out.println(line);
             }
-            
+            out.println(line);
             bufferedReader.close();
+            out.println(line);
         }catch (FileNotFoundException e) {
             // TODO: handle exception
         	System.out.println("getDiaryHTML >> 파일을 찾지 못했습니다.");

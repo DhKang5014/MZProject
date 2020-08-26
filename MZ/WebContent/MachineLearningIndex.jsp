@@ -20,7 +20,7 @@ String r = request.getParameter("contents");
 System.out.println("machineL, contents >> " + r);
 %>
 	<h1>다이어리 입력</h1>
-	<form action="http://127.0.0.1:9090/diary/predict" method="post" name="frm">
+	<form action="http://127.0.0.1:9100/diary/predict" method="post" name="frm">
 		<div>
 		
 			<table>
@@ -41,7 +41,7 @@ System.out.println("machineL, contents >> " + r);
 		</div>
 	</form>
 	<script>
-	
+		document.frm.submit();
 	</script>
 
 </body>
