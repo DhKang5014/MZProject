@@ -3453,11 +3453,10 @@ input[type="submit"].disabled, input[type="submit"]:disabled, input[type="reset"
 		            data : { name : "gil-dong", location : "seoul" },
 		             }) .done(function(data) { 
 		                 // 전송한 data를 출력 
-		                 alert(data); 
+		                 
 		                 
 		                 img_dict = JSON.parse(data);
-		                 alert(img_dict['1']);
-		                 alert(img_dict['1']==undefined);
+		                 
 		                 
 		                 //1
  						 if(img_dict['0']===undefined){
@@ -3576,8 +3575,6 @@ input[type="submit"].disabled, input[type="submit"]:disabled, input[type="reset"
 								console.log("saveDiaryImgOrder  >>  data  " + data);
 						})
 						
-
-
 
 
 					}) // HTTP 요청이 실패하면 오류와 상태에 관한 정보가 fail() 메소드로 전달됨. 

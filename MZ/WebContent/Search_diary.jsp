@@ -463,10 +463,14 @@ th, td {
 	<a href="index.jsp"><button id="home" class="button button5">HOME</button></a>
 		<div style="width: 40%; display: inline;">
 			<select name="select" id="select">
-				<option value="email">이메일</option>
-				<option value="name">이름</option>
-		<!--	<option value="category">카테고리</option>	 -->	
-				<option value="place">장소</option>
+				<!-- 포스트 제목으로 검색  -->
+				<option value="po_title">포스트제목</option>
+				<!-- 다이어리 대제목으로 검색  -->
+				<option value="title">다이어리 대제목</option>
+				<!-- 다이어리 소제목으로 검색  -->
+				<option value="stitle">다이어리 소제목</option>
+				<!-- 다이어리 소개글으로 검색  -->
+				<option value="content">소개글</option>
 			</select>
 		</div>
 		<div class="search__container" style="width: 50%; display: inline;">
@@ -500,7 +504,7 @@ th, td {
 						<table>
 						
 							<thead>
-								
+								<tr>
 									<th class="cell100 column1"> 게시글 번호 </th>
 									<th class="cell100 column2"> 대표 사진 </th>
 									<th class="cell100 column3"> 제목 </th>
@@ -548,7 +552,7 @@ th, td {
 
 			$.ajax({ 
 
-						url: "getSearch",
+						url: "getSearch_Post",
 
 						data: {				
 
@@ -591,17 +595,10 @@ th, td {
 
 			.fail(function(xhr, status, errorThrown) { 
 
-				
-
 			})
-			
-			
+
 			//Ajax End
 
-			
-			
-			
-			
 		}
 		
 		$(document).keydown(function(event) {

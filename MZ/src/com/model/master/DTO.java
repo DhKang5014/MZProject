@@ -40,6 +40,15 @@ public class DTO {
 	String sql_photo_order_select_where_po_num = "select * from photo_order where po_title = ? and email = ? and po_num = ?  ";
 	String sql_photo_order_join_select = "select * from (select a.name, a.email,a.img_url,a.num,a.lat,a.lon,a.plu_name,b.order_num,b.po_num,b.po_title from photo a inner join photo_order b on a.email = b.email and a.name = b.name) where email = ? and po_num = ? ";
 
+	// 포스트 제목으로 검색
+	String sql_search_diary_from_po_title = "select * from post where po_title like ? ";
+	// 다이어리 메인 대제목으로 검색
+	String sql_search_diary_from_main_title = "select * from diary_main where title like ? ";
+	// 다이어리 메인 소제목으로 검색
+	String sql_search_diary_from_main_stitle = "select * from diary_main where stitle like ? ";
+	// 다이어리 메인 소개글로 검색
+	String sql_search_diary_from_main_contents = "select * from diary_main where content like ? ";
+
 	public DTO(String email, String pw, String name, int age, int gender) {
 		super();
 		this.email = email;
@@ -63,51 +72,77 @@ public class DTO {
 		System.out.println(email + " " + pw + " " + name + " " + age + " " + gender + " dto 생성 small");
 	}
 
+	public String getSql_search_diary_from_po_title() {
+		return sql_search_diary_from_po_title;
+	}
+
+	public void setSql_search_diary_from_po_title(String sql_search_diary_from_po_title) {
+		this.sql_search_diary_from_po_title = sql_search_diary_from_po_title;
+	}
+
+	public String getSql_search_diary_from_main_title() {
+		return sql_search_diary_from_main_title;
+	}
+
+	public void setSql_search_diary_from_main_title(String sql_search_diary_from_main_title) {
+		this.sql_search_diary_from_main_title = sql_search_diary_from_main_title;
+	}
+
+	public String getSql_search_diary_from_main_stitle() {
+		return sql_search_diary_from_main_stitle;
+	}
+
+	public void setSql_search_diary_from_main_stitle(String sql_search_diary_from_main_stitle) {
+		this.sql_search_diary_from_main_stitle = sql_search_diary_from_main_stitle;
+	}
+
+	public String getSql_search_diary_from_main_contents() {
+		return sql_search_diary_from_main_contents;
+	}
+
+	public void setSql_search_diary_from_main_contents(String sql_search_diary_from_main_contents) {
+		this.sql_search_diary_from_main_contents = sql_search_diary_from_main_contents;
+	}
+
 	public String getSql_login_only_email() {
 		return sql_login_only_email;
 	}
-	
+
 	public String getSql_photo_order_join_select() {
 		return sql_photo_order_join_select;
 	}
-	
+
 	public String getSql_photo_order_select_where_po_num() {
 		return sql_photo_order_select_where_po_num;
 	}
-	
+
 	public String getSql_photo_order_select_one_email() {
 		return sql_photo_order_select_one_email;
 	}
-	
+
 	public String getSql_photo_order_select_one() {
 		return sql_photo_order_select_one;
 	}
-	
+
 	public String getSql_photo_order_insert() {
 		return sql_photo_order_insert;
 	}
-	
-	
+
 	public String getSql_diary_num_get_select() {
 		return sql_diary_num_get_select;
 	}
 
-
 	public String getSql_diary_main_update() {
 		return sql_diary_main_update;
 	}
-	
 
 	public String getSql_diary_main_select() {
 		return sql_diary_main_select;
 	}
-	
 
 	public String getSql_diary_main_insert() {
 		return sql_diary_main_insert;
 	}
-	
-	
 
 	public String getSql_post_select_email_file() {
 		return sql_post_select_email_file;
@@ -116,11 +151,11 @@ public class DTO {
 	public String getSql_post_select_email() {
 		return sql_post_select_email;
 	}
-	
+
 	public String getSql_post_insert() {
 		return sql_post_insert;
 	}
-	
+
 	public String getSql_publisher_check() {
 		return sql_publisher_check;
 	}

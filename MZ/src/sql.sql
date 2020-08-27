@@ -12,7 +12,7 @@ select * from photo_order;
 select u.email,u.name,u.age,u.gender,p.po_title,p.img_url from users u inner join post p on u.email = p.email;
 
 
-
+Search Post
 select * from (select u.email,u.name,u.age,u.gender,p.po_title,p.img_url from users u inner join post p on u.email = p.email) where email = 'a';
 
 
@@ -20,4 +20,11 @@ select * from (select u.email,u.name,u.age,u.gender,p.po_title,p.img_url from us
 
 
 select * from photo where email = 'a';
+
+
+포스트이름, 다이어리 타이틀, 다이어리 설명
+select * from post p;
+#Search Diary
+select p.po_num, p.po_title, p.email, p.img_url, u.name from post p inner join users u on p.email = u.email;
+select * from diary_main;
 
