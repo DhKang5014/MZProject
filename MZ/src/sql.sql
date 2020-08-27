@@ -28,3 +28,6 @@ select * from post p;
 select p.po_num, p.po_title, p.email, p.img_url, u.name from post p inner join users u on p.email = u.email;
 select * from diary_main;
 
+
+select * from (select a.name, a.email,a.img_url,a.num,a.lat,a.lon,a.plu_name,b.order_num,b.po_num,b.po_title from photo a inner join photo_order b on a.email = b.email and a.name = b.name) where email = 'b'
+

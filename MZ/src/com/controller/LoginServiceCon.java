@@ -40,7 +40,7 @@ public class LoginServiceCon implements Command{
 			session.setAttribute("user", dto_out);
 			session.setAttribute("msg", html);
 		} 
-		return "index.jsp?email="+email;
+		return "index.jsp";
 		
 	}
 

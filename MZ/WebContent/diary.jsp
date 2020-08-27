@@ -3258,7 +3258,7 @@ input[type="submit"].disabled, input[type="submit"]:disabled, input[type="reset"
                <header class="major">
                   <h2 style="font-family: 마포당인리발전소;">내 다이어리 목록</h2>
                   <ul class="actions">
-                        <li><a href="editorDiary.html" class="button" style="font-family: 마포당인리발전소;">다이어리 작성하기</a></li>
+                        <li><a href="editorDiary.jsp" class="button" style="font-family: 마포당인리발전소;">다이어리 작성하기</a></li>
                   </ul>
                </header>
                      <!-- 다이어리 목록 부분 -->
@@ -3365,7 +3365,7 @@ input[type="submit"].disabled, input[type="submit"]:disabled, input[type="reset"
                </header>
                <ul>
                   <li><a href="index.jsp">Homepage</a></li>
-                  <li><a href="editorDiary.html">다이어리 작성하기</a></li>
+                  <li><a href="editorDiary.jsp">다이어리 작성하기</a></li>
                   <li><a href="Search_diary.jsp">다이어리 탐방하기</a></li>
                   <li><span class="opener"></span>
                      <ul>

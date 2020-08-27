@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="com.model.master.*"%>
 <!DOCTYPE html>
 <html id="ko">
 
@@ -108,7 +111,10 @@ div#editor {
 }
 </style>
 </head>
-
+<%
+	DTO dto = (DTO)session.getAttribute("user");
+	String email = dto.getEmail();
+%>
 <body id='kk'>
 	<div style="">
 		<div
@@ -286,7 +292,7 @@ div#editor {
 				alert("성공");
 				console.log(file_name);
 				
-				file_name='mkhtml/a/'+file_name+".html";
+				file_name='mkhtml/'+'<%=email%>'+'/'+file_name+'.html';
 				$.ajax(
 					{ 
 						url: "getDiaryImg", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
@@ -344,7 +350,7 @@ div#editor {
 		function diary(){
 			console.log(file_name);
 			
-			file_name='mkhtml/a/'+file_name;
+			file_name='mkhtml'+'<%=email%>'+file_name;
 			$.ajax(
 				{ 
 					url: "getDiaryImg", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 

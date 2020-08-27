@@ -37,7 +37,9 @@ public class getDiaryImgOrderFromDB extends HttpServlet {
 		postDAO postdao = new postDAO(); 
 		//fileName split - /
 		String[] file_name_ar = file_name.split("/");
-		
+		System.out.println(file_name_ar[0]);
+		System.out.println(file_name_ar[1]);
+		System.out.println(file_name_ar[2]);
 		int cnt = postdao.getPostNumber(dto.getSql_diary_num_get_select(), email, file_name_ar[2]);
 		
 		

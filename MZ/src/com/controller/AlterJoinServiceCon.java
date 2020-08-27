@@ -16,12 +16,19 @@ public class AlterJoinServiceCon implements Command{
 		String pw = (String) request.getParameter("pw");
 		String name = (String) request.getParameter("name");
 		int age = Integer.parseInt(request.getParameter("age"));
-		int gender = Integer.parseInt(request.getParameter("gender"));
-
+		String[] gender = request.getParameterValues("gender");
+		for(int i=0;i<gender.length;i++) {
+			System.out.println("gender >> "+gender[i]);
+		}
+		
+		int gender_num = 0;//남자
+		if(!gender[0].equals("male")) {
+			gender_num = 1;//여자
+		}
 		System.out.println(pw);
 		System.out.println(name);
 		System.out.println(age);
-		System.out.println(gender);
+		System.out.println(gender_num);
 		
 
 		HttpSession session = request.getSession();
@@ -32,7 +39,7 @@ public class AlterJoinServiceCon implements Command{
 		dto.setPw(pw);
 		dto.setName(name);
 		dto.setAge(age);
-		dto.setAge(gender);
+		dto.setAge(gender_num);
 
 		System.out.println(dto.getSql_update());
 		System.out.println(dto.getEmail());
@@ -43,7 +50,7 @@ public class AlterJoinServiceCon implements Command{
 		int cnt = 0;
 		cnt = dao.update(dto.getSql_update(), dto.getEmail(), dto.getPw(), dto.getName(), dto.getAge(),dto.getGender());
 		System.out.println(cnt + "개 회원가입 성공하셨습니다.");
-		moveURL = "main.jsp";
+		moveURL = "index.jsp";
 	
 		return moveURL;
 	}

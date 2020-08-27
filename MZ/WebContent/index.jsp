@@ -246,12 +246,14 @@ input.img-button {
 						<li><a href="#features">About</a></li>
 						<!-- 로그인 전 -->
 						<%if(email==null){ %><li class="before_login"><a href="login.html" class="before_login">Login</a></li>
-						<li class="before_login"><a href="join.html" class="before_login">Join</a></li>
+						<li class="before_login"><a href="join2.html" class="before_login">Join</a></li>
 						<!-- 로그인 후 -->
 						<%}else{ %>
 						<li class="after_login"><a href="imgServer.jsp" class="after_login">MyPhoto</a></li>
 						<li class="after_login"><a href="diary.jsp" class="after_login">MyDiary</a></li>
 						<li class="after_login"><a href="#teams" class="after_login">MZmember</a></li>
+						<li class="after_login"><a href="join3.html" class="after_login">AlterAccount</a></li>
+						<li class="after_login"><a href="LogoutServiceCon.do" class="after_login">LogOut</a></li>
 						<%} %>
 					</ul>
 				</div>
@@ -352,9 +354,9 @@ input.img-button {
 									<div class="col-xs-6">
 										<div class="features_item_text">
 											<!-- <input type="button" class="img-button"> -->
-											<a href="editorDiary.html"><img src="assets_imgServer/images/diary.png"
+											<a href="editorDiary.jsp"><img src="assets_imgServer/images/diary.png"
 												alt="" class="img-circle"/ ></a>
-											<a href="editorDiary.html"><p class="m-top-20">나만의 다이어리 쓰기</p></a>
+											<a href="editorDiary.jsp"><p class="m-top-20">나만의 다이어리 쓰기</p></a>
 										</div>
 									</div>
 									<div class="col-xs-6">
@@ -365,9 +367,9 @@ input.img-button {
 									</div>
 									<div class="col-xs-6">
 										<div class="features_item_text m-top-50">
-											<a href="MachineLearningIndex.jsp"><img src="assets_imgServer/images/machinelearning.png" alt=""
+											<a href="age.jsp"><img src="assets_imgServer/images/machinelearning.png" alt=""
 												class="img-circle" /></a>
-											<a href="MachineLearningIndex.jsp"><p class="m-top-20">머신러닝 페이지</p></a>
+											<a href="age.jsp"><p class="m-top-20">연령별 방문객 추이</p></a>
 										</div>
 									</div>
 									<div class="col-xs-6">
@@ -699,7 +701,7 @@ input.img-button {
 					<div class="col-12 col-sm-6 col-md-4 col-lg-3">
 						<div class="our-team">
 							<div class="picture">
-								<img class="img-fluid" src="">
+								<img class="img-fluid" src="team/suhyeon.jpg" style="width:100%;height:100%;">
 							</div>
 							<div class="team-content">
 								<h3 class="name">박수현</h3>
@@ -721,7 +723,7 @@ input.img-button {
 					<div class="col-12 col-sm-6 col-md-4 col-lg-3">
 						<div class="our-team">
 							<div class="picture">
-								<img class="img-fluid" src="">
+								<img class="img-fluid" src="team/hwasu.jpg" style="width:100%;height:100%;">
 							</div>
 							<div class="team-content">
 								<h3 class="name">장화수</h3>
@@ -742,7 +744,7 @@ input.img-button {
 					<div class="col-12 col-sm-6 col-md-4 col-lg-3">
 						<div class="our-team">
 							<div class="picture">
-								<img class="img-fluid" src="">
+								<img class="img-fluid"  src="team/dahoon.jpg" style="width:100%;height:100%;">
 							</div>
 							<div class="team-content">
 								<h3 class="name">강다훈</h3>
@@ -763,7 +765,7 @@ input.img-button {
 					<div class="col-12 col-sm-6 col-md-4 col-lg-3">
 						<div class="our-team">
 							<div class="picture">
-								<img class="img-fluid" src="">
+								<img class="img-fluid" src="team/jiyun.jpg" style="width:100%;height:100%;">
 							</div>
 							<div class="team-content">
 								<h3 class="name">김지윤</h3>

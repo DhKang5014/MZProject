@@ -14,7 +14,7 @@ public class LogoutServiceCon implements Command{
 		HttpSession session = request.getSession();
 		// session.setAttribute("user", null);
 		session.removeAttribute("user");
-		return "main.jsp";
+		return "index.jsp";
 	}
 
 }

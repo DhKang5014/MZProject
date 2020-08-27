@@ -1,5 +1,6 @@
 package com.controller;
 
+import java.io.File;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,7 +30,14 @@ public class ImgServer_update implements Command {
 		String uploadPath = "C:\\Users\\SMHRD\\git\\MZProject\\MZ\\WebContent\\upload\\" + email; // upload는 폴더명 / 폴더의
 																									// 경로를 구해옴
 		System.out.println("저장 경로  :  " + uploadPath);
-
+		File f1 = new File(uploadPath);
+		// 생성자에 전달된 파일이나 디렉토리가 물리적으로 존재하는지를 검사
+		boolean is_exist = f1.exists();
+		System.out.println("저장 전 dir 존재여부 : " + is_exist);
+		
+		if(is_exist == false) {
+			f1.mkdir();
+		}
 		photoDAO dao = new photoDAO();
 			try {
 				MultipartRequest multi = new MultipartRequest( // MultipartRequest 인스턴스 생성(cos.jar의 라이브러리)
